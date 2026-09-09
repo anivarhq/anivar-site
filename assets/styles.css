@@ -1,0 +1,191 @@
+/* Anivar — marketing site.
+   Tokens lifted verbatim from the app's src/index.css so the site and the
+   product are literally the same colours. "White lifts, red marks." */
+
+:root{
+  /* graphite ramp */
+  --bg-canvas:#0D0C0B; --bg-surface:#151312; --bg-elevated:#1E1B19; --bg-hover:#262220;
+  /* the one red */
+  --accent:#C9605C; --accent-light:#D97F7A; --accent-dim:#A94B48; --accent-fill:#7E2A28;
+  /* status */
+  --ok:#6FA97C; --warn:#C9A25E; --idle:#8C99A8;
+  /* text */
+  --text-primary:#F5F2EF; --text-secondary:#9A938C; --text-tertiary:#7A736C;
+  /* white-lift */
+  --ink:255 255 255;
+  --border:rgb(var(--ink)/.06); --border-strong:rgb(var(--ink)/.12);
+  --radius:14px; --radius-lg:18px; --radius-pill:999px;
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --spring:cubic-bezier(.34,1.56,.64,1);
+  --font:'Inter',-apple-system,'Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono','Cascadia Code','SF Mono',ui-monospace,monospace;
+  --maxw:1080px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+body{margin:0;background:var(--bg-canvas);color:var(--text-primary);
+  font-family:var(--font);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--accent-light);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:99;padding:10px 16px;background:var(--bg-elevated);
+  border:1px solid var(--border-strong);border-radius:10px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:92vh;min-height:92svh;display:flex;align-items:center;
+  justify-content:center;text-align:center;padding:96px 0 72px;isolation:isolate}
+.liquid-bg{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;
+  /* static approximation — what a no-WebGL visitor sees. Never flat black. */
+  background:
+    radial-gradient(58% 46% at 26% 30%, #7E2A28 0%, transparent 62%),
+    radial-gradient(46% 38% at 76% 58%, #A94B48 0%, transparent 58%),
+    radial-gradient(30% 26% at 58% 22%, #C9605C 0%, transparent 55%),
+    var(--bg-canvas)}
+.liquid-bg canvas{display:block;width:100%;height:100%}
+/* Two scrims, and the first one matters most. The vignette below darkens the
+   EDGES and is transparent to 38% — which is exactly where the headline sits, so
+   the type was landing on the brightest, busiest part of the field. The content
+   scrim puts a readable ground back under the middle. */
+.liquid-bg::after{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(66% 52% at 50% 50%,rgba(0,0,0,.74) 0%,rgba(0,0,0,.5) 58%,transparent 100%),
+    radial-gradient(125% 95% at 50% 32%,transparent 38%,rgba(0,0,0,.6) 100%)}
+/* the hero fades into the page ground so the shader has no hard edge */
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:180px;z-index:-1;
+  background:linear-gradient(to bottom,transparent,var(--bg-canvas))}
+
+.hero h1{margin:0 0 20px;font-size:clamp(34px,6.4vw,64px);font-weight:800;
+  letter-spacing:-.035em;line-height:1.04;max-width:15ch;margin-inline:auto;
+  text-shadow:0 2px 34px rgba(0,0,0,.55)}
+.hero h1 em{font-style:normal;color:var(--accent-light)}
+.lede{margin:0 auto;max-width:54ch;font-size:clamp(16px,1.9vw,19px);line-height:1.55;
+  color:var(--text-primary);opacity:.84;text-shadow:0 1px 18px rgba(0,0,0,.65)}
+
+.cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px}
+.btn{display:inline-block;padding:14px 28px;border-radius:var(--radius-pill);
+  font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;border:1px solid transparent;
+  transition:transform .21s var(--spring),background .21s var(--ease-out);text-decoration:none}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn-primary{background:var(--accent-fill);color:#fff;border-color:rgb(var(--ink)/.14)}
+.btn-primary:hover{background:var(--accent-dim)}
+.mascot{width:66px;height:66px;border-radius:16px;margin:0 auto 24px;
+  box-shadow:0 10px 34px rgba(0,0,0,.5)}
+
+/* ---------- sections ---------- */
+section{padding:88px 0;position:relative}
+h2{margin:0 0 16px;font-size:clamp(25px,3.6vw,38px);font-weight:700;letter-spacing:-.028em;
+  line-height:1.15;max-width:20ch}
+footer{padding:52px 0 68px;border-top:1px solid var(--border);color:var(--text-tertiary);
+  font-size:14px}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.foot nav{display:flex;gap:20px;flex-wrap:wrap}
+
+/* reveal-on-scroll; opacity/transform only, and off entirely for reduced motion */
+.rise{opacity:0;transform:translateY(16px);
+  transition:opacity .6s var(--ease-out),transform .6s var(--ease-out)}
+.rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rise{opacity:1;transform:none;transition:none}
+  .btn:hover{transform:none}
+}
+@media (max-width:640px){
+  section{padding:64px 0}
+  .hero{min-height:auto;padding:72px 0 56px}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   WORDMARK
+   The identity is the name with its initial in the accent. The name
+   also happens to contain the product twice — A_I_ _ at odd
+   positions, _N_V_R at even ones — which the "in the name" section
+   below puts to work. Same six letters every time; only the lift moves.
+   ══════════════════════════════════════════════════════════════ */
+.wordmark{font-weight:800;letter-spacing:-.035em;line-height:1;display:inline-block;
+  color:var(--text-primary)}
+.wordmark .i{color:var(--accent)}          /* the lifted letters */
+.hero .wordmark{font-size:clamp(38px,7.5vw,78px);margin-bottom:22px}
+.brandbar{display:flex;align-items:center;gap:11px;margin-bottom:26px}
+.brandbar .wordmark{font-size:20px}
+/* Inline name mentions. Same six letters throughout; which ones lift depends on
+   what the sentence is about — AI where it thinks, NVR where it records. Never
+   pointed at, never explained. */
+.nm .i{color:var(--accent);font-weight:700}
+
+/* ══════════════════════════════════════════════════════════════
+   SPARE
+   One idea per screen. Headings are verb-led and describe what you
+   stop having to do; the sentence under each says how.
+   ══════════════════════════════════════════════════════════════ */
+section{padding:150px 0}
+.statement{font-size:clamp(28px,4.4vw,50px);font-weight:800;letter-spacing:-.03em;
+  line-height:1.12;margin:0;max-width:22ch}
+.statement em{font-style:normal;color:var(--accent)}
+.under{margin:24px 0 0;font-size:clamp(16px,1.7vw,19px);color:var(--text-secondary);
+  max-width:50ch;line-height:1.62}
+.hero h1{max-width:19ch}
+
+.frame{margin-top:60px;border-radius:var(--radius-lg);overflow:hidden;
+  background:var(--bg-surface);border:1px solid var(--border)}
+.frame .ph{aspect-ratio:16/9;display:grid;place-items:center;color:var(--text-tertiary);
+  font-family:var(--mono);font-size:12px}
+
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:0 52px;max-width:800px;margin:0}
+.specs div{display:flex;justify-content:space-between;gap:20px;padding:15px 0;
+  border-bottom:1px solid var(--border);font-size:14.5px}
+.specs dt{color:var(--text-tertiary);margin:0}
+.specs dd{margin:0;text-align:right;color:var(--text-primary)}
+.quiet{font-size:12px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--text-tertiary);margin:0 0 38px}
+
+@media (max-width:640px){ section{padding:92px 0} .frame{margin-top:38px} }
+
+/* ---------- download ---------- */
+.btn-ghost{background:transparent;color:var(--text-primary);border-color:var(--border-strong)}
+.btn-ghost:hover{background:var(--bg-hover)}
+.hero-meta{margin:18px 0 0;font-size:13px;color:var(--text-secondary);letter-spacing:.01em}
+.specs dd a{color:var(--text-primary);text-decoration:none;
+  border-bottom:1px solid var(--border-strong);transition:color .18s var(--ease-out)}
+.specs dd a:hover{color:var(--accent-light);border-bottom-color:var(--accent)}
+
+/* ---------- hero mark ---------- */
+.hero-mark{display:block;width:112px;height:112px;margin:0 auto 22px;border-radius:26px;
+  box-shadow:0 18px 50px rgba(0,0,0,.55)}
+
+/* ---------- download ---------- */
+.btn-ghost{background:transparent;color:var(--text-primary);border-color:var(--border-strong)}
+.btn-ghost:hover{background:var(--bg-hover)}
+.hero-meta{margin:18px 0 0;font-size:13px;color:var(--text-secondary);letter-spacing:.01em}
+
+.dl-grid{display:grid;gap:18px;margin-top:44px;
+  grid-template-columns:repeat(auto-fit,minmax(268px,1fr))}
+.dl-card{display:flex;flex-direction:column;gap:12px;padding:26px 24px 24px;
+  background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-lg)}
+/* The card for the visitor's own system lifts; the others stay quiet. */
+.dl-card[data-you="1"]{border-color:var(--accent-dim);background:var(--bg-elevated)}
+.dl-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.dl-card h3{margin:0;font-size:19px;font-weight:700;letter-spacing:-.015em}
+.dl-badge{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent-light);white-space:nowrap}
+.dl-badge:empty{display:none}
+.dl-req{margin:0;font-size:13.5px;color:var(--text-secondary);line-height:1.5}
+.dl-get{margin-top:6px;text-align:center}
+.dl-file{margin:0;font-size:12.5px;color:var(--text-tertiary);font-family:var(--mono);
+  word-break:break-all;line-height:1.5}
+.dl-note{margin:auto 0 0;padding-top:6px;font-size:13px;color:var(--text-tertiary);line-height:1.55}
+.dl-note a{color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border-strong)}
+.dl-note a:hover{color:var(--accent-light);border-bottom-color:var(--accent)}
+.dl-note code{font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
+
+.dl-foot{display:grid;gap:12px;margin-top:34px;max-width:62ch}
+.dl-foot p{margin:0;font-size:14px;color:var(--text-tertiary);line-height:1.6}
+.dl-foot strong{color:var(--text-secondary);font-weight:600}
+.dl-foot a{color:var(--text-secondary);text-decoration:none;border-bottom:1px solid var(--border-strong)}
+.dl-foot a:hover{color:var(--accent-light);border-bottom-color:var(--accent)}
