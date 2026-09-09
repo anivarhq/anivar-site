@@ -1,7 +1,9 @@
 # Anivar — website
 
-The marketing site for [Anivar](https://github.com/anivarhq/anivar), a
-local-first AI security camera recorder.
+The website for [Anivar](https://github.com/anivarhq/anivar), a local-first AI
+security camera recorder — what it does, and where to download it.
+
+**Live at <https://anivarhq.github.io/anivar-site/>**
 
 Static HTML and CSS. No framework, no build step, no dependencies — GitHub
 Pages serves the files exactly as they are committed.
