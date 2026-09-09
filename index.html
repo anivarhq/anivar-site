@@ -154,7 +154,12 @@
         <p class="dl-req">64-bit · Ubuntu 22.04 / Debian 12 or newer</p>
         <a class="btn btn-primary dl-get" data-os="linux" href="https://github.com/anivarhq/anivar/releases/latest">Download</a>
         <p class="dl-file"><span data-file="linux">Get the latest release</span></p>
-        <p class="dl-note">Portable — <code>chmod +x</code> and run. Also as <a data-os="deb" href="https://github.com/anivarhq/anivar/releases/latest">.deb</a> or <a data-os="rpm" href="https://github.com/anivarhq/anivar/releases/latest">.rpm</a>.</p>
+        <p class="dl-alt-label">Other package formats</p>
+        <div class="dl-alt">
+          <a data-os="deb" href="https://github.com/anivarhq/anivar/releases/latest"><strong>.deb</strong><span>Debian · Ubuntu</span><span data-file="deb"></span></a>
+          <a data-os="rpm" href="https://github.com/anivarhq/anivar/releases/latest"><strong>.rpm</strong><span>Fedora · RHEL · openSUSE</span><span data-file="rpm"></span></a>
+        </div>
+        <p class="dl-note">The AppImage is portable — <code>chmod +x</code> and run.</p>
       </article>
     </div>
 
@@ -437,12 +442,18 @@
   };
 
   function currentOS() {
+    var ua = navigator.userAgent || '';
+    /* There is no mobile build. Without this an iPad reports macOS and an
+       Android phone reports Linux, so the page would mark a desktop installer
+       as that visitor's system and offer them a .dmg or an AppImage. */
+    if ((navigator.userAgentData && navigator.userAgentData.mobile) ||
+        /android|iphone|ipad|ipod/i.test(ua)) return null;
     var p = (navigator.userAgentData && navigator.userAgentData.platform) ||
-            navigator.platform || navigator.userAgent || '';
-    if (/win/i.test(p))             return 'win';
-    if (/mac|iphone|ipad/i.test(p)) return 'mac';
-    if (/linux|x11|cros/i.test(p))  return 'linux';
-    return null;                    /* unknown: no card is singled out */
+            navigator.platform || ua || '';
+    if (/win/i.test(p))            return 'win';
+    if (/mac/i.test(p))            return 'mac';
+    if (/linux|x11|cros/i.test(p)) return 'linux';
+    return null;                   /* unknown: no card is singled out */
   }
   function mb(b) { return Math.round(b / 1048576) + ' MB'; }
   function set(sel, fn) {
@@ -467,7 +478,12 @@
          what they are about to download. */
       set('[data-file]', function (el) {
         var asset = by[el.getAttribute('data-file')];
-        if (asset) el.textContent = asset.name + ' · ' + mb(asset.size);
+        if (!asset) return;
+        /* The alternate-format rows are narrow and already labelled .deb/.rpm,
+           so they take the size alone; the main slots name the whole file. */
+        el.textContent = el.closest('.dl-alt')
+          ? mb(asset.size)
+          : asset.name + ' · ' + mb(asset.size);
       });
 
       var ver = (rel.tag_name || '').replace(/^v/, '');
