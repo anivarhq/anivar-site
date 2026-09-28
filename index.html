@@ -1,174 +1,524 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Anivar — it watches, it listens, it remembers</title>
-<meta name="description" content="An NVR with the AI built in — faces, number plates, sound and search, all of it on your own machine. Rust underneath, Tauri on top.">
-<meta name="theme-color" content="#0D0C0B">
+<title>Anivar — AI security cameras on your own computer</title>
+<meta name="description" content="Anivar records your security cameras around the clock and understands what they see and hear — faces you teach it, number plates, breaking glass — then answers your questions. Free, open source, and it all runs on your own computer.">
+<meta name="theme-color" content="#FBFAF8">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="preload" href="assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
-
 <meta property="og:type" content="website">
 <meta property="og:title" content="Anivar — it watches, it listens, it remembers">
-<meta property="og:description" content="An NVR with the AI built in. Faces, plates, sound and search, on your own machine.">
+<meta property="og:description" content="AI security cameras on your own computer. Faces, plates, sounds and search — free, open source, no cloud.">
 <meta property="og:image" content="https://anivarhq.github.io/anivar-site/assets/og.png">
 <meta property="og:url" content="https://anivarhq.github.io/anivar-site/">
 <meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.remove('no-js')</script>
 </head>
 <body>
-
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- ══════════════════════════ HERO ══════════════════════════ -->
-<header class="hero">
-  <div class="liquid-bg"><canvas id="liquid" aria-hidden="true"></canvas></div>
+<header class="nav" id="nav">
   <div class="wrap">
-    <img class="hero-mark" src="assets/logo.png" alt="" width="112" height="112">
-    <div class="brandbar" style="justify-content:center">
-      <span class="wordmark" style="font-size:25px"><span class="i">A</span>nivar</span>
-    </div>
-    <h1>It watches. It listens. It <em>remembers</em>.</h1>
-    <p class="lede">An NVR with the AI built in — faces, number plates, sound and search,
-       all of it on your own machine. Rust underneath, Tauri on top.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="#download">Download</a>
-      <a class="btn btn-ghost" href="#how">What it does</a>
-    </div>
-    <p class="hero-meta" id="hero-meta">Free and open source · Windows, macOS and Linux</p>
+    <a class="brand" href="./" aria-label="Anivar home"><img src="assets/logo.png" alt="" width="30" height="30">Anivar</a>
+    <nav aria-label="Sections">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#compare">Compare</a>
+      <a href="#open">Contribute</a>
+    </nav>
+    <a class="btn btn-line" href="https://github.com/anivarhq/anivar"><svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
   </div>
 </header>
 
 <main id="main">
 
-<section>
+<!-- ═════════════════════════════ HERO ═════════════════════════════ -->
+<div class="hero">
   <div class="wrap">
-    <h2 class="statement rise">It knows the sound of breaking glass.</h2>
-    <p class="under rise">Audio is classified alongside the picture — glass, alarms, a raised
-       voice, a barking dog — against the 521-class AudioSet ontology, on any camera whose
-       stream carries sound.</p>
+    <p class="eyebrow"><span class="pill">Alpha</span><span id="hero-meta">Free and open source · Apache-2.0</span></p>
+    <h1>It watches. It listens.<br>It <em>remembers</em>.</h1>
+    <p class="lede">Anivar records your security cameras around the clock and understands what they
+      see and hear — the faces you teach it, number plates, breaking glass — then answers your
+      questions about it. It's an ordinary app for your computer, and all of it runs there.</p>
+    <div class="cta">
+      <a class="btn btn-ink" id="cta-get" href="#download"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span id="cta-label">Download</span></a>
+      <a class="btn btn-line" href="https://github.com/anivarhq/anivar"><svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>View on GitHub</a>
+    </div>
+    <p class="cta-req" id="cta-req">Windows, macOS (Apple Silicon) and Linux</p>
+
+    <figure class="wall" data-scene style="margin-bottom:0">
+      <div class="wall-grid">
+<svg class="scene t1" viewBox="0 0 400 240" role="img" aria-label="Illustration: a front-door camera. A person walks up to the door and is outlined and tagged with the name Sam.">
+  <rect class="s-bg" width="400" height="240"/>
+  <path class="s-soft" d="M0 206 H400"/>
+  <rect class="s-ln" x="40" y="80" width="84" height="62" rx="2"/><path class="s-soft" d="M82 80 V142 M40 111 H124"/><path class="s-ln" d="M34 146 H130"/>
+  <rect class="s-ln" x="238" y="64" width="86" height="142" rx="2"/><rect class="s-ln" x="248" y="74" width="66" height="132"/>
+  <path class="s-soft" d="M258 86 H300 V134 H258 Z M258 146 H300 V194 H258 Z"/><circle class="s-ln" cx="307" cy="142" r="2.5"/>
+  <path class="s-ln" d="M228 206 V214 H334 V206"/>
+  <path class="s-ln" d="M352 94 H362 M357 94 V100 M350 100 H364 L361 116 H353 Z"/>
+  <path class="s-ln" d="M346 206 L342 186 H368 L364 206 Z M355 186 C350 172 342 168 336 166 M355 186 C357 170 363 164 371 160 M355 186 C355 174 353 166 351 158"/>
+  <g class="walk-in">
+    <path class="s-ln s-paper" d="M162 206 V148 Q162 126 181 126 Q200 126 200 148 V206 Z"/>
+    <path class="s-soft" d="M181 172 V206"/>
+    <circle class="s-ln s-paper" cx="181" cy="106" r="13"/>
+  </g>
+  <rect class="scan" x="0" y="30" width="400" height="2" fill="#C9605C" style="opacity:0"/>
+  <rect class="s-red draw" pathLength="100" x="150" y="84" width="62" height="126" rx="3"/>
+  <g class="pop"><rect class="s-redf" x="150" y="62" width="86" height="18" rx="4"/><text class="s-wt" x="158" y="75" font-size="11">Sam · person</text></g>
+  <circle class="s-redf rec" cx="20" cy="20" r="4"/><text class="s-tb" x="31" y="24" font-size="11.5">Front door</text><text class="s-m" x="384" y="24" font-size="10.5" text-anchor="end">14:32:07</text>
+</svg>
+<svg class="scene t2" viewBox="0 0 400 240" role="img" aria-label="Illustration: a driveway camera. A car drives up, its number plate is boxed and read as ABC 1234, and the car is noted as silver.">
+  <rect class="s-bg" width="400" height="240"/>
+  <path class="s-soft" d="M0 120 H400 M60 240 L172 120 M340 240 L228 120"/>
+  <path class="s-ln" d="M150 120 V90 M250 120 V90 M150 94 H250"/><path class="s-soft" d="M170 94 V120 M190 94 V120 M210 94 V120 M230 94 V120"/>
+  <circle class="s-ln" cx="48" cy="78" r="26"/><path class="s-ln" d="M48 104 V132"/>
+  <g class="approach">
+    <path class="s-ln s-paper" d="M150 134 L162 106 Q165 100 172 100 H228 Q235 100 238 106 L250 134 Z"/>
+    <path class="s-soft" d="M161 130 L169 110 H231 L239 130 Z"/>
+    <path class="s-ln s-paper" d="M118 180 V152 Q118 136 134 134 H266 Q282 136 282 152 V180 Q282 188 274 188 H126 Q118 188 118 180 Z"/>
+    <rect class="s-ln" x="130" y="146" width="30" height="10" rx="5"/><rect class="s-ln" x="240" y="146" width="30" height="10" rx="5"/>
+    <path class="s-soft" d="M176 148 H224 M176 153 H224"/>
+    <rect class="s-ln s-paper" x="176" y="162" width="48" height="16" rx="2"/>
+    <text x="200" y="173.5" font-size="8.5" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" font-weight="700" fill="#161412">ABC 1234</text>
+    <rect class="s-ln s-tile2" x="128" y="188" width="20" height="14" rx="3"/><rect class="s-ln s-tile2" x="252" y="188" width="20" height="14" rx="3"/>
+  </g>
+  <rect class="s-red draw" pathLength="100" x="170" y="157" width="60" height="26" rx="3"/>
+  <g class="pop">
+    <path d="M230 170 H290" stroke="#C9605C" stroke-width="1.5"/>
+    <rect x="290" y="146" width="98" height="48" rx="7" fill="#FBFAF8" stroke="#C9605C" stroke-width="1.5"/>
+    <text x="300" y="166" font-size="13.5" font-family="ui-monospace,Consolas,monospace" font-weight="700" fill="#161412">ABC 1234</text>
+    <rect class="typed" x="298" y="153" width="86" height="17" fill="#FBFAF8"/>
+    <circle cx="305" cy="181" r="4.5" fill="#B7BBC0" stroke="#8E949A"/><text class="s-t" x="315" y="185" font-size="11">silver car</text>
+  </g>
+  <circle class="s-redf rec" cx="20" cy="20" r="4"/><text class="s-tb" x="31" y="24" font-size="11.5">Driveway</text><text class="s-m" x="384" y="24" font-size="10.5" text-anchor="end">14:35:51</text>
+</svg>
+<svg class="scene t3" viewBox="0 0 400 240" role="img" aria-label="Illustration: a back-garden camera with sound. A waveform spikes and the sound is identified as glass breaking, score 0.91, heard twice.">
+  <rect class="s-bg" width="400" height="240"/>
+  <path class="s-soft" d="M0 178 H400"/>
+  <path class="s-soft" d="M0 146 H400 M0 168 H400"/>
+  <path class="s-ln s-paper" d="M14 178 V134 L20 126 L26 134 V178 M36 178 V134 L42 126 L48 134 V178 M58 178 V134 L64 126 L70 134 V178 M80 178 V134 L86 126 L92 134 V178 M102 178 V134 L108 126 L114 134 V178 M124 178 V134 L130 126 L136 134 V178 M146 178 V134 L152 126 L158 134 V178 M168 178 V134 L174 126 L180 134 V178 M190 178 V134 L196 126 L202 134 V178 M212 178 V134 L218 126 L224 134 V178 M234 178 V134 L240 126 L246 134 V178 M256 178 V134 L262 126 L268 134 V178 M278 178 V134 L284 126 L290 134 V178 M300 178 V134 L306 126 L312 134 V178 M322 178 V134 L328 126 L334 134 V178 M344 178 V134 L350 126 L356 134 V178 M366 178 V134 L372 126 L378 134 V178 M388 178 V134 L394 126 L400 134 V178 "/>
+  <circle class="s-ln s-tile2" cx="110" cy="72" r="32"/><path class="s-ln" d="M110 104 V126"/>
+  <rect class="eq" x="22.0" y="219.1" width="5" height="6.9" rx="2.5" fill="#2B2724" style="animation-delay:-0.14s;opacity:0.75"/><rect class="eq" x="33.8" y="217.1" width="5" height="8.9" rx="2.5" fill="#2B2724" style="animation-delay:-0.07s;opacity:0.75"/><rect class="eq" x="45.6" y="217.8" width="5" height="8.2" rx="2.5" fill="#2B2724" style="animation-delay:-0.33s;opacity:0.75"/><rect class="eq" x="57.4" y="220.7" width="5" height="5.3" rx="2.5" fill="#2B2724" style="animation-delay:-0.46s;opacity:0.75"/><rect class="eq" x="69.2" y="220.8" width="5" height="5.2" rx="2.5" fill="#2B2724" style="animation-delay:-0.39s;opacity:0.75"/><rect class="eq" x="81.0" y="220.6" width="5" height="5.4" rx="2.5" fill="#2B2724" style="animation-delay:-0.08s;opacity:0.75"/><rect class="eq" x="92.8" y="218.5" width="5" height="7.5" rx="2.5" fill="#2B2724" style="animation-delay:-0.74s;opacity:0.75"/><rect class="eq" x="104.6" y="213.4" width="5" height="12.6" rx="2.5" fill="#2B2724" style="animation-delay:-0.20s;opacity:0.75"/><rect class="eq" x="116.4" y="206.6" width="5" height="19.4" rx="2.5" fill="#2B2724" style="animation-delay:-0.85s;opacity:0.75"/><rect class="eq" x="128.2" y="205.4" width="5" height="20.6" rx="2.5" fill="#2B2724" style="animation-delay:-0.36s;opacity:0.75"/><rect class="eq" x="140.0" y="199.7" width="5" height="26.3" rx="2.5" fill="#2B2724" style="animation-delay:-0.04s;opacity:0.75"/><rect class="eq" x="151.8" y="199.2" width="5" height="26.8" rx="2.5" fill="#2B2724" style="animation-delay:-0.26s;opacity:0.75"/><rect class="eq" x="163.6" y="204.7" width="5" height="21.3" rx="2.5" fill="#C9605C" style="animation-delay:-0.11s;opacity:1"/><rect class="eq" x="175.4" y="201.3" width="5" height="24.7" rx="2.5" fill="#C9605C" style="animation-delay:-0.73s;opacity:1"/><rect class="eq" x="187.2" y="200.9" width="5" height="25.1" rx="2.5" fill="#C9605C" style="animation-delay:-0.52s;opacity:1"/><rect class="eq" x="199.0" y="194.6" width="5" height="31.4" rx="2.5" fill="#C9605C" style="animation-delay:-0.34s;opacity:1"/><rect class="eq" x="210.8" y="197.2" width="5" height="28.8" rx="2.5" fill="#C9605C" style="animation-delay:-0.06s;opacity:1"/><rect class="eq" x="222.6" y="203.8" width="5" height="22.2" rx="2.5" fill="#C9605C" style="animation-delay:-0.19s;opacity:1"/><rect class="eq" x="234.4" y="199.3" width="5" height="26.7" rx="2.5" fill="#C9605C" style="animation-delay:-0.38s;opacity:1"/><rect class="eq" x="246.2" y="204.7" width="5" height="21.3" rx="2.5" fill="#2B2724" style="animation-delay:-0.53s;opacity:0.75"/><rect class="eq" x="258.0" y="205.0" width="5" height="21.0" rx="2.5" fill="#2B2724" style="animation-delay:-0.27s;opacity:0.75"/><rect class="eq" x="269.8" y="203.3" width="5" height="22.7" rx="2.5" fill="#2B2724" style="animation-delay:-0.63s;opacity:0.75"/><rect class="eq" x="281.6" y="210.5" width="5" height="15.5" rx="2.5" fill="#2B2724" style="animation-delay:-0.52s;opacity:0.75"/><rect class="eq" x="293.4" y="209.3" width="5" height="16.7" rx="2.5" fill="#2B2724" style="animation-delay:-0.79s;opacity:0.75"/><rect class="eq" x="305.2" y="216.6" width="5" height="9.4" rx="2.5" fill="#2B2724" style="animation-delay:-0.26s;opacity:0.75"/><rect class="eq" x="317.0" y="215.1" width="5" height="10.9" rx="2.5" fill="#2B2724" style="animation-delay:-0.11s;opacity:0.75"/><rect class="eq" x="328.8" y="218.5" width="5" height="7.5" rx="2.5" fill="#2B2724" style="animation-delay:-0.68s;opacity:0.75"/><rect class="eq" x="340.6" y="220.1" width="5" height="5.9" rx="2.5" fill="#2B2724" style="animation-delay:-0.44s;opacity:0.75"/><rect class="eq" x="352.4" y="220.8" width="5" height="5.2" rx="2.5" fill="#2B2724" style="animation-delay:-0.60s;opacity:0.75"/><rect class="eq" x="364.2" y="216.4" width="5" height="9.6" rx="2.5" fill="#2B2724" style="animation-delay:-0.52s;opacity:0.75"/><rect class="eq" x="376.0" y="215.7" width="5" height="10.3" rx="2.5" fill="#2B2724" style="animation-delay:-0.28s;opacity:0.75"/>
+  <g class="pop">
+    <rect x="224" y="40" width="160" height="50" rx="10" fill="#FBFAF8" stroke="#D3CBC1"/>
+    <path d="M238 60 h5 l7 -6 v20 l-7 -6 h-5 z M255 58 q4 6 0 12 M259 54 q8 10 0 20" fill="none" stroke="#C9605C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text class="s-tb" x="270" y="61" font-size="12.5">Glass breaking</text>
+    <text class="s-m" x="270" y="78" font-size="10.5">0.91 · heard twice</text>
+  </g>
+  <circle class="s-redf rec" cx="20" cy="20" r="4"/><text class="s-tb" x="31" y="24" font-size="11.5">Back garden</text><text class="s-m" x="384" y="24" font-size="10.5" text-anchor="end">14:41:12</text>
+</svg>
+<svg class="scene t4" viewBox="0 0 400 240" role="img" aria-label="Illustration: asking Anivar 'Anyone at the front door last night?'. It answers with one visit at 23:14, the hours it searched, and the clip.">
+  <rect class="s-bg" width="400" height="240"/>
+  <text class="s-tb" x="16" y="24" font-size="11.5">Ask Anivar</text><text class="s-m" x="384" y="24" font-size="10.5" text-anchor="end">on this computer</text>
+  <g class="bubble">
+    <rect x="120" y="40" width="264" height="32" rx="16" fill="#161412"/>
+    <text class="s-wt" x="136" y="60.5" font-size="12" font-weight="500">Anyone at the front door last night?</text>
+    <rect class="type-cover" x="132" y="46" width="244" height="20" fill="#161412"/>
+  </g>
+  <g class="dots" style="opacity:0"><circle cx="24" cy="98" r="3" fill="#6B645E"/><circle cx="34" cy="98" r="3" fill="#6B645E"/><circle cx="44" cy="98" r="3" fill="#6B645E"/></g>
+  <g class="pop">
+    <text class="s-tb" x="18" y="100" font-size="13">One visit, at 23:14 — the front door.</text>
+    <text class="s-m" x="18" y="118" font-size="10.5">searched 18:00 – 06:00 · 1 clip</text>
+  </g>
+  <g class="pop-late">
+    <rect x="18" y="132" width="226" height="92" rx="10" fill="#FBFAF8" stroke="#D3CBC1"/>
+    <rect x="26" y="140" width="96" height="76" rx="6" fill="#E8E2DA"/>
+    <path d="M78 216 V158 H108 V216" fill="none" stroke="#2B2724" stroke-width="1.2"/>
+    <path d="M50 216 V190 Q50 180 58 180 Q66 180 66 190 V216 Z" fill="#FBFAF8" stroke="#2B2724" stroke-width="1.2"/>
+    <circle cx="58" cy="172" r="6" fill="#FBFAF8" stroke="#2B2724" stroke-width="1.2"/>
+    <rect x="45" y="162" width="26" height="56" rx="2" fill="none" stroke="#C9605C" stroke-width="1.5"/>
+    <circle cx="96" cy="190" r="11" fill="#FBFAF8" opacity=".95"/><path d="M93 185 L101 190 L93 195 Z" fill="#161412"/>
+    <text class="s-tb" x="134" y="160" font-size="12">Front door</text>
+    <text class="s-m" x="134" y="178" font-size="10.5">23:14 · 0:42</text>
+    <text class="s-m" x="134" y="196" font-size="10.5">person</text>
+    <rect x="254" y="132" width="130" height="92" rx="10" fill="#FBFAF8" stroke="#D3CBC1"/>
+    <circle cx="280" cy="162" r="14" fill="#E8E2DA" stroke="#2B2724" stroke-width="1.2"/>
+    <text class="s-tb" x="302" y="159" font-size="12">Unknown</text>
+    <text class="s-m" x="302" y="175" font-size="10.5">seen once</text>
+    <text x="268" y="206" font-size="11.5" font-family="-apple-system,'Segoe UI',system-ui,sans-serif" font-weight="600" fill="#A3423E">Name them →</text>
+  </g>
+</svg>
+      </div>
+      <figcaption class="wall-cap"><span>Illustration of what Anivar does, not a screenshot.</span><span>4 cameras · 1 computer · 0 cloud</span></figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PROMISE ═══════════════════════════ -->
+<div class="promise">
+  <div class="wrap">
+    <ul>
+      <li><b>A normal installer</b><span>No Docker, no server, no terminal. Download it, open it, add a camera.</span></li>
+      <li><b>No account</b><span>There's nothing to sign up for, and no Anivar cloud to sign in to.</span></li>
+      <li><b>No telemetry</b><span>Nothing about you or your footage is reported anywhere.</span></li>
+      <li><b>Your GPU, or just the CPU</b><span>DirectML, CUDA and TensorRT on Windows. CoreML on Mac. CPU everywhere.</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ FEATURES ══════════════════════════ -->
+<section id="features">
+  <div class="wrap">
+    <div class="head rise">
+      <p class="kicker">What it does</p>
+      <h2>Recording is the <em>easy</em> part.</h2>
+      <p>Anivar also knows what it's looking at. Every model runs on your computer, and none is
+         downloaded until you ask for it.</p>
+    </div>
+
+    <div class="feats">
+      <article class="feat">
+        <div class="feat-art rise" data-scene><svg class="scene" viewBox="0 0 480 300" role="img" aria-label="Illustration: scrubbing a day of recording. A playhead moves along a 24-hour timeline with event markers and a gap, and the video frame above follows it.">
+  <rect class="s-bg" width="480" height="300"/>
+  <rect x="24" y="24" width="432" height="186" rx="10" fill="#E8E2DA"/>
+  <path class="s-soft" d="M24 184 L150 128 H330 L456 184 M150 128 V36 M330 128 V36"/>
+  <path class="s-ln" d="M218 128 V82 H262 V128"/><circle class="s-ln" cx="255" cy="106" r="1.6"/>
+  <path class="s-ln" d="M392 184 L388 166 H410 L406 184 Z M399 166 C394 154 388 150 382 148 M399 166 C401 152 407 148 414 144"/>
+  <g class="walker">
+    <path class="s-ln s-paper" d="M316 188 V150 Q316 138 330 138 Q344 138 344 150 V188 Z"/>
+    <circle class="s-ln s-paper" cx="330" cy="126" r="9"/>
+  </g>
+  <text class="s-m" x="38" y="46" font-size="11">TUE 23:14:07</text>
+  <text class="s-m" x="442" y="46" font-size="11" text-anchor="end">playback</text>
+  <rect x="24" y="238" width="432" height="10" rx="5" fill="#D8D1C7"/>
+  <rect x="148" y="238" width="36" height="10" fill="#F1EDE7"/>
+  <rect x="94" y="235" width="4" height="16" rx="2" fill="#C9605C"/>
+  <rect x="222" y="235" width="4" height="16" rx="2" fill="#C9605C"/>
+  <rect class="ev-pin" x="328" y="235" width="4" height="16" rx="2" fill="#C9605C"/>
+  <rect x="404" y="235" width="4" height="16" rx="2" fill="#C9605C"/>
+  <g class="playhead"><path d="M330 226 V260" stroke="#161412" stroke-width="2"/><circle cx="330" cy="226" r="5.5" fill="#161412"/></g>
+  <text class="s-m" x="24" y="280" font-size="11">00</text><text class="s-m" x="132" y="280" font-size="11" text-anchor="middle">06</text>
+  <text class="s-m" x="240" y="280" font-size="11" text-anchor="middle">12</text><text class="s-m" x="348" y="280" font-size="11" text-anchor="middle">18</text>
+  <text class="s-m" x="456" y="280" font-size="11" text-anchor="end">24</text>
+</svg></div>
+        <div class="rise">
+          <h3>Every second, on your own disk.</h3>
+          <p>Each camera records continuously to files on your computer, within a disk budget and
+             retention you set. Scrub to any moment — events are pinned on the timeline.</p>
+          <ul>
+            <li>USB webcams, RTSP, MJPEG, and ONVIF discovery</li>
+            <li>Sub-second live view for IP cameras over WebRTC</li>
+            <li>Export a clip, or an incident report with its video</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <div class="feat-art rise" data-scene><svg class="scene" viewBox="0 0 480 300" role="img" aria-label="Illustration: three faces. Two are ringed and named Sam and Ana after several frames agree; the third is marked unknown and sent to Review.">
+  <rect class="s-bg" width="480" height="300"/>
+  <rect x="24" y="36" width="128" height="150" rx="12" fill="#FBFAF8" stroke="#D3CBC1"/><path class="s-ln s-tile2" d="M48 186 V170 Q48 138 88 138 Q128 138 128 170 V186 Z"/><circle class="s-ln s-paper" cx="88" cy="100" r="24"/><path d="M64 100 A24 24 0 0 1 112 100 Q104 86 86 88 Q72 90 64 100 Z" fill="#2B2724"/><circle class="s-red ring1" pathLength="100" cx="88" cy="100" r="33" style="stroke:#C9605C"/>
+  <rect x="176" y="36" width="128" height="150" rx="12" fill="#FBFAF8" stroke="#D3CBC1"/><path d="M214 150 Q204 76 240 72 Q276 76 266 150 Q240 160 214 150 Z" fill="#6B645E"/><path class="s-ln s-tile2" d="M200 186 V170 Q200 138 240 138 Q280 138 280 170 V186 Z"/><circle class="s-ln s-paper" cx="240" cy="100" r="24"/><path d="M217 94 Q226 76 250 78 Q262 82 264 96 Q248 84 217 94 Z" fill="#6B645E"/><circle class="s-red ring2" pathLength="100" cx="240" cy="100" r="33" style="stroke:#C9605C"/>
+  <rect x="328" y="36" width="128" height="150" rx="12" fill="#FBFAF8" stroke="#D3CBC1"/><path class="s-ln s-tile2" d="M352 186 V170 Q352 138 392 138 Q432 138 432 170 V186 Z"/><circle class="s-ln s-paper" cx="392" cy="100" r="24"/><path d="M368 96 Q370 76 392 76 Q414 76 416 96 Q404 90 392 90 Q380 90 368 96 Z" fill="#8C847C"/><circle class="s-red ring3" pathLength="100" cx="392" cy="100" r="33" style="stroke:#8C847C"/>
+  <g class="name1"><text class="s-tb" x="88" y="212" font-size="15" text-anchor="middle">Sam</text><text class="s-m" x="88" y="230" font-size="10.5" text-anchor="middle">3 of 3 frames agree</text></g>
+  <g class="name2"><text class="s-tb" x="240" y="212" font-size="15" text-anchor="middle">Ana</text><text class="s-m" x="240" y="230" font-size="10.5" text-anchor="middle">4 of 4 frames agree</text></g>
+  <g class="name3"><text class="s-t" x="392" y="212" font-size="15" text-anchor="middle" font-weight="600">Unknown</text><text x="392" y="230" font-size="10.5" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" fill="#A3423E">→ Who is this?</text></g>
+  <g class="name4"><rect x="120" y="254" width="240" height="28" rx="14" fill="#FBFAF8" stroke="#D3CBC1"/><text class="s-m" x="240" y="272" font-size="11" text-anchor="middle">named only after frames agree</text></g>
+</svg></div>
+        <div class="rise">
+          <h3>Faces you teach it. No one else.</h3>
+          <p>Enrol someone once and Anivar names them when they appear. A name needs several frames
+             to agree before it's used, and people it doesn't know wait in Review for you.</p>
+          <ul>
+            <li>Face recognition runs on your machine</li>
+            <li>Person re-identification links sightings across cameras</li>
+            <li>Remove a person and their biometrics are erased</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <div class="feat-art rise" data-scene><svg class="scene" viewBox="0 0 480 300" role="img" aria-label="Illustration: a number plate read character by character as ABC 1234, noted as a silver car on the driveway, and a prompt that the car has been seen three times.">
+  <rect class="s-bg" width="480" height="300"/>
+  <path d="M88 76 V50 H114 M366 50 H392 V76 M392 116 V142 H366 M114 142 H88 V116" fill="none" stroke="#C9605C" stroke-width="2.4" stroke-linecap="round"/>
+  <rect x="104" y="62" width="272" height="68" rx="9" fill="#FBFAF8" stroke="#161412" stroke-width="2"/>
+  <circle class="s-soft" cx="120" cy="96" r="3"/><circle class="s-soft" cx="360" cy="96" r="3"/>
+  <text x="240" y="110" font-size="40" text-anchor="middle" font-family="ui-monospace,'Cascadia Mono',Consolas,monospace" font-weight="700" fill="#161412" letter-spacing="2">ABC 1234</text>
+  <rect class="plate-type" x="134" y="70" width="212" height="52" fill="#FBFAF8"/>
+  <g class="pop">
+    <rect x="104" y="158" width="104" height="30" rx="15" fill="#FBFAF8" stroke="#D3CBC1"/><circle cx="123" cy="173" r="6" fill="#B7BBC0" stroke="#8E949A"/><text class="s-t" x="136" y="178" font-size="13">silver</text>
+    <rect x="216" y="158" width="160" height="30" rx="15" fill="#FBFAF8" stroke="#D3CBC1"/><text class="s-t" x="232" y="178" font-size="13">car · Driveway</text>
+  </g>
+  <g class="pop-late">
+    <rect x="104" y="208" width="272" height="64" rx="12" fill="#161412"/>
+    <text class="s-wt" x="122" y="234" font-size="14">Seen 3 times</text>
+    <text x="122" y="254" font-size="12" fill="#D9D2CA" font-family="-apple-system,'Segoe UI',system-ui,sans-serif">A recurring vehicle — name it?</text>
+    <rect x="300" y="226" width="60" height="28" rx="14" fill="#FBFAF8"/><text class="s-tb" x="330" y="244.5" font-size="12.5" text-anchor="middle">Name</text>
+  </g>
+</svg></div>
+        <div class="rise">
+          <h3>Plates read. Cars remembered.</h3>
+          <p>Number plates are read on-device and matched to the names you give them. A car that
+             keeps coming back is flagged, so you can decide who it is.</p>
+          <ul>
+            <li>Plate reading plus body colour</li>
+            <li>Known plates shown by name</li>
+            <li>Vehicles get their own feed in Review</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <div class="feat-art rise" data-scene><svg class="scene" viewBox="0 0 480 300" role="img" aria-label="Illustration: a scrolling spectrogram of the camera's sound. The top three classes are glass breaking 0.91, speech 0.22 and wind 0.08, and an alert confirms glass breaking after two windows in a row.">
+  <rect class="s-bg" width="480" height="300"/>
+  <defs><clipPath id="specclip"><rect x="24" y="30" width="270" height="118" rx="8"/></clipPath></defs>
+  <rect x="24" y="30" width="270" height="118" rx="8" fill="#FBFAF8" stroke="#D3CBC1"/>
+  <g clip-path="url(#specclip)"><g class="spec"><rect x="24" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="24" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="24" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="24" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="24" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="24" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="24" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="24" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="24" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="34" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="34" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="34" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="34" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="34" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="34" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="34" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="34" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="34" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="44" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="44" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="44" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="44" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="44" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="44" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="44" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="44" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="54" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="54" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="54" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="54" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="54" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="54" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="54" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="54" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="64" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="64" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="64" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="64" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="64" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="64" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="64" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="64" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="64" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.31"/><rect x="74" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="74" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="74" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="74" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="74" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="74" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="74" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="74" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="74" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="84" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="84" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="84" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="84" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="84" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="84" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="84" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="84" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="94" y="36" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.56"/><rect x="94" y="46" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.94"/><rect x="94" y="56" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.60"/><rect x="94" y="66" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.56"/><rect x="94" y="76" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.88"/><rect x="94" y="86" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.50"/><rect x="94" y="96" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.56"/><rect x="94" y="106" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.84"/><rect x="94" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="94" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="94" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="104" y="36" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.74"/><rect x="104" y="46" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.75"/><rect x="104" y="56" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.68"/><rect x="104" y="66" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.69"/><rect x="104" y="76" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.88"/><rect x="104" y="86" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.53"/><rect x="104" y="96" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.86"/><rect x="104" y="106" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.54"/><rect x="104" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="104" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.29"/><rect x="104" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="114" y="36" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.89"/><rect x="114" y="46" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.66"/><rect x="114" y="56" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.47"/><rect x="114" y="66" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.57"/><rect x="114" y="76" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.58"/><rect x="114" y="86" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.75"/><rect x="114" y="96" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.54"/><rect x="114" y="106" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.48"/><rect x="114" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="114" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="114" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.30"/><rect x="124" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="124" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="124" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="124" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="124" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="124" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="124" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="124" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="124" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="134" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="134" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="134" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="134" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="134" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="134" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="134" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="134" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="134" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.30"/><rect x="144" y="46" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="144" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="144" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="144" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="144" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="144" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="144" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="144" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="144" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.29"/><rect x="154" y="36" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="154" y="46" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="154" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="154" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="154" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="154" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="154" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="154" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="154" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="154" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="154" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.29"/><rect x="164" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="164" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="164" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="164" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.44"/><rect x="164" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.41"/><rect x="164" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.48"/><rect x="164" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.52"/><rect x="164" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.53"/><rect x="164" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.54"/><rect x="174" y="46" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="174" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="174" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="174" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="174" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.40"/><rect x="174" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.47"/><rect x="174" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.43"/><rect x="174" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.49"/><rect x="174" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.50"/><rect x="174" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.50"/><rect x="184" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="184" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="184" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="184" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.39"/><rect x="184" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.43"/><rect x="184" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.48"/><rect x="184" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.46"/><rect x="184" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.48"/><rect x="184" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.55"/><rect x="194" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="194" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="194" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="194" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="194" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="194" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="194" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="194" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="194" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="204" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="204" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="204" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="204" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="204" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="204" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="204" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="204" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="214" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="214" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="214" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="214" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="214" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="214" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="214" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="214" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="224" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="224" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="224" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="224" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="224" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="224" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="224" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="224" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="224" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.30"/><rect x="234" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="234" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="234" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="234" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="234" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="234" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="234" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="234" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="244" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="244" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="244" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="244" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="244" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="244" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="244" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="244" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="254" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="254" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="254" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="254" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="254" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="254" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="254" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="254" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="254" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.30"/><rect x="264" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="264" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="264" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="264" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="264" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="264" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="264" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="264" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="264" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="274" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="274" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="274" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="274" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="274" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="274" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="274" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="274" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="274" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="284" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="284" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="284" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="284" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="284" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="284" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="284" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="284" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="284" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="294" y="36" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.52"/><rect x="294" y="46" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.71"/><rect x="294" y="56" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.87"/><rect x="294" y="66" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.92"/><rect x="294" y="76" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.92"/><rect x="294" y="86" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.56"/><rect x="294" y="96" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.60"/><rect x="294" y="106" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.77"/><rect x="294" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="294" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="294" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="304" y="36" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.64"/><rect x="304" y="46" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.90"/><rect x="304" y="56" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.88"/><rect x="304" y="66" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.71"/><rect x="304" y="76" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.55"/><rect x="304" y="86" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.70"/><rect x="304" y="96" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.46"/><rect x="304" y="106" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.71"/><rect x="304" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="304" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="304" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="314" y="36" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.80"/><rect x="314" y="46" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.72"/><rect x="314" y="56" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.93"/><rect x="314" y="66" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.58"/><rect x="314" y="76" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.51"/><rect x="314" y="86" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.86"/><rect x="314" y="96" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.69"/><rect x="314" y="106" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.55"/><rect x="314" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="314" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.29"/><rect x="314" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="324" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="324" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="324" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="324" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="324" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="324" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="324" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="324" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="334" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="334" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="334" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="334" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="334" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="334" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="334" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="334" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="344" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="344" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="344" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="344" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="344" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="344" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="344" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="344" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="344" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="354" y="36" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="354" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="354" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="354" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="354" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="354" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="354" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="354" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="354" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="354" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="364" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="364" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="364" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.41"/><rect x="364" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.46"/><rect x="364" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.50"/><rect x="364" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.52"/><rect x="364" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.47"/><rect x="364" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.52"/><rect x="374" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="374" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="374" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.40"/><rect x="374" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.41"/><rect x="374" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.47"/><rect x="374" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.49"/><rect x="374" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.51"/><rect x="374" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.49"/><rect x="384" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="384" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="384" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="384" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.40"/><rect x="384" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.41"/><rect x="384" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.50"/><rect x="384" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.48"/><rect x="384" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.52"/><rect x="384" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.51"/><rect x="394" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="394" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="394" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="394" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="394" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="394" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="394" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="394" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="394" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="404" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="404" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="404" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="404" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="404" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="404" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="404" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="404" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="414" y="46" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="414" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="414" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.12"/><rect x="414" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="414" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="414" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="414" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="414" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="414" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="414" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.30"/><rect x="424" y="46" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="424" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="424" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="424" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="424" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="424" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="424" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="424" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="424" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="424" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="434" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="434" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="434" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="434" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="434" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="434" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="434" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="434" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.29"/><rect x="434" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="444" y="46" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="444" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="444" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="444" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="444" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="444" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="444" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="444" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="444" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="454" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="454" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="454" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="454" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="454" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="454" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.26"/><rect x="454" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="454" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.28"/><rect x="454" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="464" y="46" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="464" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="464" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="464" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="464" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.17"/><rect x="464" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="464" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="464" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="464" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.31"/><rect x="474" y="56" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="474" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.13"/><rect x="474" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.14"/><rect x="474" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.19"/><rect x="474" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="474" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="474" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="474" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="474" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.23"/><rect x="484" y="66" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.16"/><rect x="484" y="76" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.15"/><rect x="484" y="86" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.21"/><rect x="484" y="96" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.22"/><rect x="484" y="106" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.18"/><rect x="484" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.27"/><rect x="484" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.29"/><rect x="484" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/><rect x="494" y="36" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.66"/><rect x="494" y="46" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.94"/><rect x="494" y="56" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.71"/><rect x="494" y="66" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.81"/><rect x="494" y="76" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.94"/><rect x="494" y="86" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.75"/><rect x="494" y="96" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.76"/><rect x="494" y="106" width="9" height="9" rx="1.5" fill="#C9605C" opacity="0.55"/><rect x="494" y="116" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.20"/><rect x="494" y="126" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.25"/><rect x="494" y="136" width="9" height="9" rx="1.5" fill="#2B2724" opacity="0.24"/></g></g>
+  <text class="s-m" x="24" y="168" font-size="10.5">pitch ↑   time →</text>
+  <text class="s-m" x="314" y="42" font-size="10.5" letter-spacing=".06em">TOP 3</text>
+  <text class="s-tb" x="314" y="68" font-size="13">Glass breaking</text><text class="s-m" x="456" y="68" font-size="11" text-anchor="end">0.91</text>
+  <rect x="314" y="76" width="142" height="6" rx="3" fill="#E8E2DA"/><rect x="314" y="76" width="129" height="6" rx="3" fill="#C9605C"/>
+  <text class="s-t" x="314" y="104" font-size="13">Speech</text><text class="s-m" x="456" y="104" font-size="11" text-anchor="end">0.22</text>
+  <rect x="314" y="112" width="142" height="6" rx="3" fill="#E8E2DA"/><rect x="314" y="112" width="31" height="6" rx="3" fill="#6B645E"/>
+  <text class="s-t" x="314" y="140" font-size="13">Wind</text><text class="s-m" x="456" y="140" font-size="11" text-anchor="end">0.08</text>
+  <rect x="314" y="148" width="142" height="6" rx="3" fill="#E8E2DA"/><rect x="314" y="148" width="11" height="6" rx="3" fill="#6B645E"/>
+  <g class="pop-late">
+    <rect x="24" y="196" width="432" height="72" rx="14" fill="#FBFAF8" stroke="#D3CBC1"/>
+    <circle cx="50" cy="232" r="6" fill="#C9605C"/>
+    <text class="s-tb" x="68" y="227" font-size="14">Glass breaking · Back garden</text>
+    <text class="s-m" x="68" y="248" font-size="11">confirmed in 2 windows in a row · 14:41:12</text>
+  </g>
+</svg></div>
+        <div class="rise">
+          <h3>It hears what the camera hears.</h3>
+          <p>On cameras that carry sound, audio is classified against 521 everyday sounds — glass,
+             alarms, barking, a raised voice. Most must be heard twice in a row before they alert,
+             so one bang isn't an emergency.</p>
+          <ul>
+            <li>YAMNet sound classification, on-device</li>
+            <li>Top three sounds and loudness saved with each event</li>
+            <li>Sounds get their own feed</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <div class="feat-art rise" data-scene><svg class="scene" viewBox="0 0 480 300" role="img" aria-label="Illustration: searching for 'person with a package'. Four results appear, and the best match, a person carrying a box at the front door at 16:20, is highlighted.">
+  <rect class="s-bg" width="480" height="300"/>
+  <rect x="24" y="24" width="432" height="46" rx="23" fill="#FBFAF8" stroke="#D3CBC1"/>
+  <circle cx="50" cy="45" r="7" fill="none" stroke="#6B645E" stroke-width="1.8"/><path d="M55 50 L61 56" stroke="#6B645E" stroke-width="1.8" stroke-linecap="round"/>
+  <text class="s-t" x="72" y="52" font-size="15">person with a package</text>
+  <rect class="type-cover" x="70" y="34" width="250" height="26" fill="#FBFAF8"/>
+  <rect x="24" y="96" width="98" height="136" rx="10" fill="#E8E2DA"/><path class="s-ln s-paper" d="M59 214 V176 Q59 162 73 162 Q87 162 87 176 V214 Z"/><circle class="s-ln s-paper" cx="73" cy="148" r="10"/><path class="s-ln" d="M87 186 h6 v14 h-6"/>
+  <rect x="135" y="96" width="98" height="136" rx="10" fill="#E8E2DA"/><path class="s-ln s-paper" d="M170 214 V176 Q170 162 184 162 Q198 162 198 176 V214 Z"/><circle class="s-ln s-paper" cx="184" cy="148" r="10"/>
+  <rect x="246" y="96" width="98" height="136" rx="10" fill="#E8E2DA"/><path class="s-ln s-paper" d="M281 214 V176 Q281 162 295 162 Q309 162 309 176 V214 Z"/><circle class="s-ln s-paper" cx="295" cy="148" r="10"/><rect class="s-ln s-paper" x="280" y="182" width="30" height="22" rx="2"/><path class="s-soft" d="M280 190 H310"/>
+  <rect x="357" y="96" width="98" height="136" rx="10" fill="#E8E2DA"/><path class="s-ln s-paper" d="M392 214 V176 Q392 162 406 162 Q420 162 420 176 V214 Z"/><circle class="s-ln s-paper" cx="406" cy="148" r="10"/><path class="s-ln" d="M392 190 q-8 4 -8 14"/>
+  <text class="s-m" x="73" y="252" font-size="10.5" text-anchor="middle">09:41</text>
+  <text class="s-m" x="184" y="252" font-size="10.5" text-anchor="middle">11:05</text>
+  <text class="s-m" x="406" y="252" font-size="10.5" text-anchor="middle">18:52</text>
+  <g class="pop-late">
+    <rect x="243" y="93" width="104" height="142" rx="12" fill="none" stroke="#C9605C" stroke-width="2.4"/>
+    <rect x="276" y="176" width="38" height="32" rx="3" fill="none" stroke="#C9605C" stroke-width="1.6"/>
+    <text x="295" y="252" font-size="10.5" text-anchor="middle" font-family="ui-monospace,Consolas,monospace" fill="#A3423E" font-weight="700">Front door · 16:20</text>
+  </g>
+  <text class="s-m" x="24" y="282" font-size="10.5">matched by what each detected object looked like</text>
+</svg></div>
+        <div class="rise">
+          <h3>Ask for what you remember.</h3>
+          <p>Search by what was in the frame — “red shirt”, “person with a package” — or ask in plain
+             words. The answer comes from your recordings first, with the clips attached. When
+             there's nothing there, it says so instead of guessing.</p>
+          <ul>
+            <li>Image search over every detected object</li>
+            <li>A language model that runs on your computer — or your own OpenAI, Anthropic, Gemini, Groq, xAI or LM Studio</li>
+            <li>Every answer says which hours it covers</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="feat">
+        <div class="feat-art rise" data-scene><svg class="scene" viewBox="0 0 480 300" role="img" aria-label="Illustration: behaviour rules with zone entry, loitering and climbing a fence switched on, and a Telegram alert: loitering at the front gate, with a snapshot and buttons to acknowledge or view the clip.">
+  <rect class="s-bg" width="480" height="300"/>
+  <text class="s-m" x="24" y="40" font-size="10.5" letter-spacing=".06em">BEHAVIOUR RULES</text>
+  <text class="s-t" x="24" y="75" font-size="13.5">Zone entry</text><rect x="192" y="62" width="30" height="18" rx="9" fill="#161412" stroke="#161412"/><circle cx="214" cy="71" r="6.5" fill="#FBFAF8"/><text class="s-t" x="24" y="111" font-size="13.5">Loitering</text><rect x="192" y="98" width="30" height="18" rx="9" fill="#161412" stroke="#161412"/><circle cx="214" cy="107" r="6.5" fill="#FBFAF8"/><text class="s-t" x="24" y="147" font-size="13.5">Climbing a fence</text><rect x="192" y="134" width="30" height="18" rx="9" fill="#161412" stroke="#161412"/><circle cx="214" cy="143" r="6.5" fill="#FBFAF8"/>
+  <text class="s-t" x="24" y="183" font-size="13.5">Running</text><rect x="192" y="170" width="30" height="18" rx="9" fill="#E8E2DA" stroke="#D3CBC1"/><circle cx="200" cy="179" r="6.5" fill="#FBFAF8"/><text class="s-t" x="24" y="219" font-size="13.5">Person down</text><rect x="192" y="206" width="30" height="18" rx="9" fill="#E8E2DA" stroke="#D3CBC1"/><circle cx="200" cy="215" r="6.5" fill="#FBFAF8"/><text class="s-t" x="24" y="255" font-size="13.5">Crowd</text><rect x="192" y="242" width="30" height="18" rx="9" fill="#E8E2DA" stroke="#D3CBC1"/><circle cx="200" cy="251" r="6.5" fill="#FBFAF8"/>
+  <g class="slide-in">
+    <rect x="244" y="28" width="212" height="244" rx="16" fill="#FBFAF8" stroke="#D3CBC1"/>
+    <rect x="258" y="42" width="22" height="22" rx="6" fill="#161412"/><path d="M263 58 L269 47 L275 58" fill="none" stroke="#F5E9E4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text class="s-tb" x="288" y="57" font-size="12">Your Anivar bot</text><text class="s-m" x="442" y="57" font-size="10" text-anchor="end">14:52</text>
+    <rect x="258" y="76" width="184" height="104" rx="8" fill="#E8E2DA"/>
+    <path class="s-soft" d="M258 162 H442"/><path class="s-ln" d="M300 162 V104 M400 162 V104 M300 110 H400"/><path class="s-soft" d="M320 110 V162 M340 110 V162 M360 110 V162 M380 110 V162"/>
+    <path class="s-ln s-paper" d="M338 170 V142 Q338 132 348 132 Q358 132 358 142 V170 Z"/><circle class="s-ln s-paper" cx="348" cy="122" r="7.5"/>
+    <rect x="330" y="108" width="36" height="66" rx="2" fill="none" stroke="#C9605C" stroke-width="1.8"/>
+    <rect x="330" y="94" width="54" height="13" rx="3" fill="#C9605C"/><text class="s-wt" x="335" y="104" font-size="8.5">loitering</text>
+    <text class="s-tb" x="258" y="202" font-size="13.5">Loitering · Front gate</text>
+    <text class="s-t" x="258" y="220" font-size="12">Someone is lingering at the gate.</text>
+    <rect x="258" y="234" width="88" height="26" rx="13" fill="#FBFAF8" stroke="#D3CBC1"/><text class="s-tb" x="302" y="251" font-size="11.5" text-anchor="middle">Acknowledge</text>
+    <rect x="352" y="234" width="90" height="26" rx="13" fill="#FBFAF8" stroke="#D3CBC1"/><text class="s-tb" x="397" y="251" font-size="11.5" text-anchor="middle">View clip</text>
+  </g>
+</svg></div>
+        <div class="rise">
+          <h3>Alerts only when it matters.</h3>
+          <p>Draw zones and fence lines on each camera, then choose what earns an alert: entering a
+             zone, loitering, climbing a fence, running, someone falling, a crowd. Alerts go to your
+             own Telegram bot, with quiet hours and per-category mute.</p>
+          <ul>
+            <li>Motion masks for trees, fans and screens</li>
+            <li>Browse people, vehicles and sounds from Telegram</li>
+            <li>Share a clip as a signed link that expires</li>
+          </ul>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
-<section>
+<!-- ═════════════════════════ HOW IT WORKS ════════════════════════ -->
+<section id="how" style="background:var(--paper-2)">
   <div class="wrap">
-    <h2 class="statement rise">Rewind to the seconds before anything happened.</h2>
-    <p class="under rise">Every camera writes to disk without pause, so the approach, the
-       hesitation and the walk away are all there — not just the moment something crossed
-       a threshold.</p>
+    <div class="head rise">
+      <p class="kicker">How it works</p>
+      <h2>Everything happens on <em>this</em> computer.</h2>
+      <p>There is no Anivar server. The app on your desk is the whole system — recording,
+         recognition, search and the assistant.</p>
+    </div>
+
+    <div class="machine rise" data-scene>
+      <span class="machine-label">Your computer</span>
+      <ol class="flow">
+        <li><span class="node"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="13" height="10" rx="2"/><path d="M15.5 10.5 21 7.5v9l-5.5-3"/></svg></span><b>Cameras</b><span>USB, RTSP, MJPEG, ONVIF</span></li>
+        <li><span class="node"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg></span><b>Record</b><span>Every stream written to your disk</span></li>
+        <li><span class="node"><svg viewBox="0 0 24 24"><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><rect x="9" y="8" width="6" height="8" rx="1"/></svg></span><b>Detect</b><span>ONNX Runtime on your GPU or CPU</span></li>
+        <li><span class="node"><svg viewBox="0 0 24 24"><path d="M12 3.5 21 8.5l-9 5-9-5z"/><path d="M3 13.5l9 5 9-5"/></svg></span><b>Understand</b><span>Faces, plates, sounds, behaviour</span></li>
+        <li><span class="node"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>Remember</b><span>A database and video files in your app folder</span></li>
+        <li><span class="node"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H10l-6 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span><b>Answer</b><span>Search, and a language model on your machine</span></li>
+      </ol>
+    </div>
+    <p class="muted rise" style="margin:36px 0 0;font-size:15px">Only these ever leave the computer — and only if you switch them on:</p>
+    <div class="outside rise">
+      <div><b>Telegram</b><span class="opt">optional</span><span>Alerts and clips, sent to your own bot.</span></div>
+      <div><b>A cloud AI</b><span class="opt">optional</span><span>Only if you add your own API key.</span></div>
+      <div><b>Tailscale</b><span class="opt">optional</span><span>Viewing links over your own tailnet, with an expiry.</span></div>
+    </div>
   </div>
 </section>
 
-<section>
+<!-- ═══════════════════════════ COMPARE ═══════════════════════════ -->
+<section id="compare">
   <div class="wrap">
-    <h2 class="statement rise">It learns your family, your cars, your regulars.</h2>
-    <p class="under rise">Enrol a face once and <span class="nm"><span class="i">A</span>nivar</span> names it on sight. Number plates are
-       read and matched to names you choose. When it is uncertain it tells you, and shows
-       what the decision rested on.</p>
+    <div class="head rise">
+      <p class="kicker">Compared</p>
+      <h2>How it stacks up, <em>honestly</em>.</h2>
+      <p>Anivar is young. Here's where it leads today, and where others are still ahead.</p>
+    </div>
+    <!-- Every cell checked against the project's own pages, 2026-09-27:
+         Frigate   docs.frigate.video/frigate/installation, …/configuration/face_recognition,
+                   …/license_plate_recognition, …/audio_detectors, …/semantic_search,
+                   …/genai/genai_config, …/integrations/home-assistant, …/configuration/pwa,
+                   frigate.video/plus, github.com/blakeblackshear/frigate (MIT)
+         Agent DVR ispyconnect.com/buy, /features, /download, /about, /docs/agent/ai-config,
+                   /docs/agent/ai-assistants, /faq
+         Blue Iris blueirissoftware.com, blueirissoftware.com/updates, App Store id585350145;
+                   MQTT from the vendor's own forum (viewtopic.php?t=656)
+         Re-check before editing a cell. -->
+    <div class="cmp-scroll rise">
+      <table class="cmp">
+        <thead><tr><th scope="col"><span class="sr-only">Feature</span></th><th scope="col" class="us">Anivar</th><th scope="col">Frigate</th><th scope="col">Agent DVR</th><th scope="col">Blue Iris</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">How you install it</th><td class="us"><span class="y" aria-hidden="true">✓</span>A desktop installer</td><td>Docker (recommended)</td><td>Installer, script or Docker</td><td>Windows installer</td></tr>
+          <tr><th scope="row">Runs on</th><td class="us">Windows, macOS (Apple Silicon), Linux</td><td>Linux; macOS through Docker; Windows not officially supported</td><td>Windows, macOS, Linux, Raspberry Pi</td><td>Windows</td></tr>
+          <tr><th scope="row">Source code</th><td class="us"><span class="y" aria-hidden="true">✓</span>Open · Apache-2.0</td><td><span class="y" aria-hidden="true">✓</span>Open · MIT</td><td><span class="n" aria-hidden="true">—</span>Core not published</td><td><span class="n" aria-hidden="true">—</span>Closed</td></tr>
+          <tr><th scope="row">Price</th><td class="us">Free</td><td>Free; optional Frigate+ models $50/yr</td><td>Free locally; remote access and apps from $7.95/mo</td><td>$39.95–$99.95</td></tr>
+          <tr><th scope="row">Faces and plates</th><td class="us"><span class="y" aria-hidden="true">✓</span>Built in</td><td><span class="y" aria-hidden="true">✓</span>Built in</td><td><span class="y" aria-hidden="true">✓</span>With a paid plan</td><td><span class="y" aria-hidden="true">✓</span>Built in</td></tr>
+          <tr><th scope="row">Recognises sounds</th><td class="us"><span class="y" aria-hidden="true">✓</span>521 classes</td><td><span class="y" aria-hidden="true">✓</span>500+ classes</td><td><span class="y" aria-hidden="true">✓</span>With a paid plan</td><td><span class="n" aria-hidden="true">—</span>Not listed</td></tr>
+          <tr><th scope="row">Search footage by description</th><td class="us"><span class="y" aria-hidden="true">✓</span>Built in</td><td><span class="y" aria-hidden="true">✓</span>Built in</td><td><span class="n" aria-hidden="true">—</span>Through outside assistants</td><td><span class="n" aria-hidden="true">—</span>Not listed</td></tr>
+          <tr><th scope="row">Language model</th><td class="us"><span class="y" aria-hidden="true">✓</span>Included, runs on your computer — or bring your own key</td><td>Bring your own (Ollama, llama.cpp or a cloud API)</td><td>Outside assistants and vision models you connect</td><td><span class="n" aria-hidden="true">—</span>Not listed</td></tr>
+          <tr><th scope="row">Home Assistant / MQTT</th><td class="us"><span class="n" aria-hidden="true">—</span>No — alerts go to Telegram</td><td><span class="y" aria-hidden="true">✓</span>Both</td><td><span class="y" aria-hidden="true">✓</span>Both</td><td><span class="y" aria-hidden="true">✓</span>MQTT</td></tr>
+          <tr><th scope="row">Phone app</th><td class="us"><span class="n" aria-hidden="true">—</span>Telegram bot and share links</td><td>Installable web app</td><td><span class="y" aria-hidden="true">✓</span>iOS and Android, with a subscription</td><td><span class="y" aria-hidden="true">✓</span>iOS ($9.99) and Android</td></tr>
+          <tr><th scope="row">Maturity</th><td class="us">Alpha</td><td><span class="y" aria-hidden="true">✓</span>Established, large community</td><td><span class="y" aria-hidden="true">✓</span>Established</td><td><span class="y" aria-hidden="true">✓</span>Established</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note">Checked against each project's own website and documentation in September 2026.
+       Something out of date? <a href="https://github.com/anivarhq/anivar/issues/new/choose">Tell us</a> and we'll fix it.</p>
   </div>
 </section>
 
-<section>
+<!-- ═══════════════════════════ PRIVACY ═══════════════════════════ -->
+<section id="privacy" style="padding-top:24px">
   <div class="wrap">
-    <h2 class="statement rise">Describe what you remember. Get the clip.</h2>
-    <p class="under rise">Search by what was in the frame rather than by the hour it happened.
-       Ask <span class="nm"><span class="i">A</span>nivar</span> in plain language and the footage comes back with it. When the archive
-       genuinely holds nothing, it says so.</p>
+    <div class="head rise">
+      <p class="kicker">Private by construction</p>
+      <h2>Your footage never <em>needs</em> to leave.</h2>
+    </div>
+    <div class="priv rise">
+      <div><b>No account, no cloud</b><p>There's nothing to sign up for and no Anivar server to send anything to.</p></div>
+      <div><b>Models when you ask</b><p>Nothing is downloaded until you choose it — the detector, face and plate models, even the language model.</p></div>
+      <div><b>Biometrics you control</b><p>Face data stays in your app folder. Remove a person and their biometrics are erased completely.</p></div>
+    </div>
   </div>
 </section>
 
-<section>
+<!-- ═══════════════════════════ DOWNLOAD ══════════════════════════ -->
+<section id="download" style="background:var(--paper-2)">
   <div class="wrap">
-    <h2 class="statement rise">Alerts arrive in Telegram, signed and revocable.</h2>
-    <p class="under rise">The bot is yours. Every link it sends is cryptographically signed and
-       carries an expiry, and one action revokes every link ever issued. Quiet hours and
-       per-camera rules decide what earns an interruption.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2 class="statement rise">Rust underneath. A native window on top.</h2>
-    <p class="under rise">The engine is Rust and the interface draws through the operating
-       system's own webview, so it opens and behaves like the rest of your desktop.
-       Detection runs on your graphics card where there is one.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2 class="statement rise">The whole system lives on one computer.</h2>
-    <p class="under rise">Recording, recognition and search happen on the same machine that
-       holds the footage. It works the same on a disconnected network as it does on
-       yours.</p>
-  </div>
-</section>
-
-<section id="how">
-  <div class="wrap">
-    <p class="quiet">Detail</p>
-    <dl class="specs">
-      <div><dt>Camera types</dt><dd>USB, RTSP, MJPEG, ONVIF</dd></div>
-      <div><dt>Video</dt><dd>H.264</dd></div>
-      <div><dt>Acceleration</dt><dd>DirectML on Windows, CoreML on macOS</dd></div>
-      <div><dt>NVIDIA</dt><dd>CUDA and TensorRT, on Windows</dd></div>
-      <div><dt>Zones</dt><dd>Drawn per camera</dd></div>
-      <div><dt>Away from home</dt><dd>Over your Tailscale network</dd></div>
-      <div><dt>Privacy mode</dt><dd>Records depth instead of faces</dd></div>
-      <div><dt>Sign-in</dt><dd>Optional, with two-factor</dd></div>
-      <div><dt>Account</dt><dd>None</dd></div>
-      <div><dt>Telemetry</dt><dd>None</dd></div>
-      <div><dt>Platforms</dt><dd>Windows, macOS (Apple Silicon), Linux</dd></div>
-      <div><dt>Licence</dt><dd>Apache-2.0</dd></div>
-    </dl>
-    <p class="under" style="max-width:54ch;margin-top:36px">Windows is the platform it is
-       developed and tested on. On Linux the models run on the processor today. Models
-       download when you ask for them, and each shows its licence first.</p>
-  </div>
-</section>
-
-<section id="download">
-  <div class="wrap">
-    <h2 class="statement">Download Anivar.</h2>
-    <p class="under">Free, open source, and yours to keep. Pick your system — each card
-       shows the exact file you get and what it needs.</p>
+    <div class="head">
+      <p class="kicker">Download</p>
+      <h2>Get Anivar.</h2>
+      <p>Free, open source, and yours to keep. Windows is where it's developed and tested day to
+         day; macOS and Linux builds come from the same code.</p>
+    </div>
 
     <div class="dl-grid">
       <article class="dl-card" data-card="win">
         <div class="dl-head"><h3>Windows</h3><span class="dl-badge" data-badge="win"></span></div>
         <p class="dl-req">Windows 10 or 11 · 64-bit</p>
-        <a class="btn btn-primary dl-get" data-os="win" href="https://github.com/anivarhq/anivar/releases/latest/download/Anivar-windows-x64-setup.exe">Download</a>
-        <p class="dl-file"><span data-file="win">Get the latest release</span></p>
-        <p class="dl-note">Installs for you only — no administrator prompt.</p>
+        <a class="btn btn-ink dl-get" data-os="win" href="https://github.com/anivarhq/anivar/releases/latest/download/Anivar-windows-x64-setup.exe">Download</a>
+        <p class="dl-file"><span data-file="win">Anivar-windows-x64-setup.exe</span></p>
+        <p class="dl-note">Installs for you only — no administrator prompt. Uses any DirectX 12 GPU, and NVIDIA cards through CUDA.</p>
       </article>
       <article class="dl-card" data-card="mac">
         <div class="dl-head"><h3>macOS</h3><span class="dl-badge" data-badge="mac"></span></div>
         <p class="dl-req">macOS 11 or later · Apple Silicon</p>
-        <a class="btn btn-primary dl-get" data-os="mac" href="https://github.com/anivarhq/anivar/releases/latest/download/Anivar-macos-arm64.dmg">Download</a>
-        <p class="dl-file"><span data-file="mac">Get the latest release</span></p>
-        <p class="dl-note">Intel Macs are not supported yet.</p>
+        <a class="btn btn-ink dl-get" data-os="mac" href="https://github.com/anivarhq/anivar/releases/latest/download/Anivar-macos-arm64.dmg">Download</a>
+        <p class="dl-file"><span data-file="mac">Anivar-macos-arm64.dmg</span></p>
+        <p class="dl-note">Intel Macs are not supported.</p>
       </article>
       <article class="dl-card" data-card="linux">
         <div class="dl-head"><h3>Linux</h3><span class="dl-badge" data-badge="linux"></span></div>
         <p class="dl-req">64-bit · Ubuntu 22.04 / Debian 12 or newer</p>
-        <a class="btn btn-primary dl-get" data-os="linux" href="https://github.com/anivarhq/anivar/releases/latest/download/Anivar-linux-x86_64.AppImage">Download</a>
-        <p class="dl-file"><span data-file="linux">Get the latest release</span></p>
+        <a class="btn btn-ink dl-get" data-os="linux" href="https://github.com/anivarhq/anivar/releases/latest/download/Anivar-linux-x86_64.AppImage">Download AppImage</a>
+        <p class="dl-file"><span data-file="linux">Anivar-linux-x86_64.AppImage</span></p>
         <p class="dl-alt-label">Other package formats</p>
         <div class="dl-alt">
           <a data-os="deb" href="https://github.com/anivarhq/anivar/releases/latest/download/Anivar-linux-amd64.deb"><strong>.deb</strong><span>Debian · Ubuntu</span><span data-file="deb"></span></a>
           <a data-os="rpm" href="https://github.com/anivarhq/anivar/releases/latest/download/Anivar-linux-x86_64.rpm"><strong>.rpm</strong><span>Fedora · RHEL · openSUSE</span><span data-file="rpm"></span></a>
         </div>
-        <p class="dl-note">The AppImage is portable — <code>chmod +x</code> and run.</p>
+        <p class="dl-note">Models run on the processor. The AppImage is portable — <code>chmod +x</code> and run.</p>
       </article>
     </div>
 
     <div class="dl-foot">
-      <p>Every download has a <strong>SHA-256</strong> published beside it, and installed
-         copies update themselves. <a href="https://github.com/anivarhq/anivar/releases/latest">Release notes and checksums</a>.</p>
-      <p>These builds are not signed by a certificate authority, so Windows and macOS each
-         ask once before opening a new app.
-         <a href="https://github.com/anivarhq/anivar#before-you-install">What to click</a>.</p>
+      <p>Every file has a <strong>SHA-256</strong> checksum published beside it —
+         <a href="https://github.com/anivarhq/anivar/releases/latest">release notes and checksums</a>.
+         To update, open <strong>Settings → Check for Updates</strong> in the app.</p>
+      <p>These early builds aren't signed by a certificate authority, so Windows and macOS each ask
+         once before opening them. <a href="https://github.com/anivarhq/anivar#before-you-install">What to click</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CONTRIBUTE ═════════════════════════ -->
+<section id="open">
+  <div class="wrap open">
+    <div class="rise">
+      <p class="kicker">Built in the open</p>
+      <h2>Help build the camera app <em>you'd</em> trust.</h2>
+      <p class="lede" style="margin-top:20px">Anivar is Apache-2.0 and developed on GitHub. There's
+         work at every size, from a one-line fix to wiring in a new model — and every change gets
+         a review.</p>
+      <ul class="stack" aria-label="Built with">
+        <li>Rust</li><li>Tauri 2</li><li>React</li><li>TypeScript</li><li>ONNX Runtime</li><li>llama.cpp</li><li>SQLite</li><li>ffmpeg</li>
+      </ul>
+    </div>
+    <div class="open-links rise">
+      <a href="https://github.com/anivarhq/anivar/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22"><div><b>Good first issues</b><span>Small, scoped, with the files named.</span></div><i aria-hidden="true">→</i></a>
+      <a href="https://github.com/anivarhq/anivar/discussions"><div><b>Discussions</b><span>Questions, ideas, show your setup.</span></div><i aria-hidden="true">→</i></a>
+      <a href="https://github.com/anivarhq/anivar/blob/main/ROADMAP.md"><div><b>Roadmap</b><span>What's next, and what's deliberately not.</span></div><i aria-hidden="true">→</i></a>
+      <a href="https://github.com/anivarhq/anivar/blob/main/CONTRIBUTING.md"><div><b>Contributing guide</b><span>Build it, test it, send a pull request.</span></div><i aria-hidden="true">→</i></a>
     </div>
   </div>
 </section>
@@ -176,276 +526,92 @@
 </main>
 
 <footer>
-  <div class="wrap foot">
-    <p style="margin:0"><span class="nm"><span class="i">A</span>nivar</span> — a local-first security camera recorder.<br>
-       Apache-2.0. Downloadable AI models carry their own separate licences.</p>
-    <nav>
+  <div class="wrap">
+    <p style="margin:0">Anivar — a local-first AI security camera recorder.<br>
+       Apache-2.0. Downloadable models carry their own licences.</p>
+    <nav aria-label="Footer">
       <a href="#download">Download</a>
-      <a href="#how">Detail</a>
       <a href="https://github.com/anivarhq/anivar">GitHub</a>
       <a href="https://github.com/anivarhq/anivar/releases">Releases</a>
+      <a href="https://github.com/anivarhq/anivar/blob/main/PRIVACY.md">Privacy</a>
+      <a href="https://github.com/anivarhq/anivar/blob/main/SECURITY.md">Security</a>
     </nav>
   </div>
 </footer>
 
 <script>
-/* ============================================================================
-   Hero background — liquid field.
-   Two-level VECTOR domain warping over 3D simplex noise, with a ridged top
-   octave and Blinn-Phong lighting. The lighting is what stops it reading as
-   fog: an unlit colour ramp always looks like weather, never like a surface.
-   Constants below were locked in the tuner (liquid-tune.html, kept out of the
-   published site) — retune there, then paste the numbers back in here.
-   Noise: Ashima Arts / Stefan Gustavson 3D simplex, public domain.
-   ========================================================================= */
+/* The nav gains a hairline once the page has scrolled. */
 (function () {
-  var canvas = document.getElementById('liquid');
-  if (!canvas) return;
-  var gl = canvas.getContext('webgl2', { antialias:false, alpha:false })
-        || canvas.getContext('webgl',  { antialias:false, alpha:false });
-  if (!gl) return;   // CSS gradient fallback on .liquid-bg stays visible
-
-  var PALETTE = ['#0D0C0B', '#7E2A28', '#C9605C', '#F5E9E4'];
-  //              bg-canvas   accent-fill  accent   warm specular
-  var hex2rgb = function (h) {
-    return [1,3,5].map(function (i) { return parseInt(h.slice(i,i+2),16)/255; });
-  };
-
-  var VERT =
-    'attribute vec2 aPos;varying vec2 vUv;' +
-    'void main(){ vUv = aPos*0.5+0.5; gl_Position = vec4(aPos,0.0,1.0); }';
-
-  var FRAG = [
-'precision highp float;',
-'#define SCALE  0.85',
-'#define WARP_A 1.50',   // swirl
-'#define WARP_B 1.90',   // fold — the "liquid" knob
-'#define RIDGE  0.11',   // creases
-'#define RELIEF 0.075',  // how much the surface catches light
-'#define SPEC   0.30',   // wet highlight
-'#define SHINE  42.0',   // highlight tightness
-'#define SPEED  0.055',
-'#define CREST  0.15',
-'varying vec2 vUv;',
-'uniform float uTime;',
-'uniform vec2  uResolution;',
-'uniform vec3  uColor0, uColor1, uColor2, uColor3;',
-
-'vec4 permute(vec4 x){ return mod(((x*34.0)+1.0)*x, 289.0); }',
-'vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314*r; }',
-'float snoise(vec3 v){',
-'  const vec2 C = vec2(1.0/6.0, 1.0/3.0);',
-'  const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);',
-'  vec3 i  = floor(v + dot(v, C.yyy));',
-'  vec3 x0 = v - i + dot(i, C.xxx);',
-'  vec3 g = step(x0.yzx, x0.xyz);',
-'  vec3 l = 1.0 - g;',
-'  vec3 i1 = min(g.xyz, l.zxy);',
-'  vec3 i2 = max(g.xyz, l.zxy);',
-'  vec3 x1 = x0 - i1 + 1.0*C.xxx;',
-'  vec3 x2 = x0 - i2 + 2.0*C.xxx;',
-'  vec3 x3 = x0 - 1.0 + 3.0*C.xxx;',
-'  i = mod(i, 289.0);',
-'  vec4 p = permute(permute(permute(',
-'             i.z + vec4(0.0, i1.z, i2.z, 1.0))',
-'           + i.y + vec4(0.0, i1.y, i2.y, 1.0))',
-'           + i.x + vec4(0.0, i1.x, i2.x, 1.0));',
-'  float n_ = 1.0/7.0;',
-'  vec3  ns = n_*D.wyz - D.xzx;',
-'  vec4 j = p - 49.0*floor(p*ns.z*ns.z);',
-'  vec4 x_ = floor(j*ns.z);',
-'  vec4 y_ = floor(j - 7.0*x_);',
-'  vec4 x = x_*ns.x + ns.yyyy;',
-'  vec4 y = y_*ns.x + ns.yyyy;',
-'  vec4 h = 1.0 - abs(x) - abs(y);',
-'  vec4 b0 = vec4(x.xy, y.xy);',
-'  vec4 b1 = vec4(x.zw, y.zw);',
-'  vec4 s0 = floor(b0)*2.0 + 1.0;',
-'  vec4 s1 = floor(b1)*2.0 + 1.0;',
-'  vec4 sh = -step(h, vec4(0.0));',
-'  vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;',
-'  vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;',
-'  vec3 p0 = vec3(a0.xy, h.x);',
-'  vec3 p1 = vec3(a0.zw, h.y);',
-'  vec3 p2 = vec3(a1.xy, h.z);',
-'  vec3 p3 = vec3(a1.zw, h.w);',
-'  vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));',
-'  p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;',
-'  vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);',
-'  m = m*m;',
-'  return 42.0*dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));',
-'}',
-
-'float fbm2(vec3 p){ return snoise(p)*0.6 + snoise(p*2.03 + 17.0)*0.3; }',
-'float fbm3(vec3 p){',
-'  float s = snoise(p)*0.55;',
-'  s += snoise(p*2.02 + 31.0)*0.28;',
-'  float r = 1.0 - abs(snoise(p*3.20 + 63.0));',
-'  s += (r*r - 0.5)*RIDGE;',
-'  return s;',
-'}',
-/* two-level vector warp: q displaces the field, r displaces q. the two layers
-   advance at different rates so they shear past each other instead of
-   morphing in place — that shearing is what reads as liquid. */
-'float field(vec2 uv, float t, out vec2 warp){',
-'  vec3 p = vec3(uv, t);',
-'  vec2 q = vec2(fbm2(p), fbm2(p + vec3(5.2, 1.3, 0.7)));',
-'  vec2 r = vec2(',
-'    fbm2(p + WARP_A*vec3(q,0.0) + vec3(1.7, 9.2, t* 0.35)),',
-'    fbm2(p + WARP_A*vec3(q,0.0) + vec3(8.3, 2.8, t*-0.28)));',
-'  warp = r;',
-'  return fbm3(p + WARP_B*vec3(r,0.0));',
-'}',
-
-'void main(){',
-'  vec2 uv = vUv;',
-'  uv.x *= uResolution.x / uResolution.y;',
-'  float t = uTime*SPEED;',
-'  uv += vec2(t*0.10, t*0.05);',
-'  uv *= SCALE;',
-'  vec2 warp;',
-'  float f = field(uv, t, warp);',
-'  const float e = 0.012;',
-'  vec3 wp  = vec3(uv, t) + WARP_B*vec3(warp, 0.0);',
-'  float fx = fbm3(wp + vec3(e, 0.0, 0.0));',
-'  float fy = fbm3(wp + vec3(0.0, e, 0.0));',
-'  vec3  N  = normalize(vec3(-(fx-f)/e*RELIEF, -(fy-f)/e*RELIEF, 1.0));',
-'  vec3 L = normalize(vec3(-0.35, 0.55, 0.75));',
-'  vec3 H = normalize(L + vec3(0.0, 0.0, 1.0));',
-'  float diff = max(dot(N,L), 0.0);',
-'  float spec = pow(max(dot(N,H), 0.0), SHINE);',
-'  float h = f*0.5 + 0.5;',
-'  vec3 col = mix(uColor0, uColor1, smoothstep(0.36, 0.62, h));',
-'  col = mix(col, uColor2, smoothstep(0.66, 0.85, h));',
-'  col = mix(col, uColor3, smoothstep(0.87, 0.97, h));',
-'  col *= 0.70 + 0.50*diff;',
-'  col += uColor3*spec*SPEC;',
-'  col += uColor3*smoothstep(0.93, 1.0, h)*CREST;',
-   /* kill 8-bit banding across the large smooth areas */
-'  float d = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233)))*43758.5453);',
-'  col += (d - 0.5)/255.0;',
-'  gl_FragColor = vec4(col, 1.0);',
-'}'].join('\n');
-
-  function compile(type, src) {
-    var s = gl.createShader(type);
-    gl.shaderSource(s, src); gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) return null;
-    return s;
-  }
-  var vs = compile(gl.VERTEX_SHADER, VERT), fs = compile(gl.FRAGMENT_SHADER, FRAG);
-  if (!vs || !fs) return;                       // fall back to the CSS gradient
-  var prog = gl.createProgram();
-  gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
-  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
-  gl.useProgram(prog);
-
-  var buf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-  var aPos = gl.getAttribLocation(prog, 'aPos');
-  gl.enableVertexAttribArray(aPos);
-  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
-
-  var U = function (n) { return gl.getUniformLocation(prog, n); };
-  var uTime = U('uTime'), uRes = U('uResolution');
-  PALETTE.forEach(function (h, i) { gl.uniform3fv(U('uColor' + i), hex2rgb(h)); });
-
-  function resize() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var w = Math.max(1, Math.round(canvas.clientWidth  * dpr));
-    var h = Math.max(1, Math.round(canvas.clientHeight * dpr));
-    if (canvas.width !== w || canvas.height !== h) {
-      canvas.width = w; canvas.height = h;
-      gl.viewport(0, 0, w, h);
-      gl.uniform2f(uRes, w, h);
-    }
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var raf = 0, t0 = performance.now();
-
-  function frame(now) {
-    resize();
-    gl.uniform1f(uTime, (now - t0) / 1000);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    raf = requestAnimationFrame(frame);
-  }
-
-  if (reduced) {                                 // one static frame, no loop
-    gl.uniform1f(uTime, 8.0);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-  } else {
-    raf = requestAnimationFrame(frame);
-    /* the hero scrolls away; stop paying for it when it is off screen */
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) {
-        es.forEach(function (en) {
-          if (en.isIntersecting && !raf && !document.hidden) {
-            t0 = performance.now(); raf = requestAnimationFrame(frame);
-          } else if (!en.isIntersecting && raf) {
-            cancelAnimationFrame(raf); raf = 0;
-          }
-        });
-      }, { threshold: 0 }).observe(canvas);
-    }
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden && raf) { cancelAnimationFrame(raf); raf = 0; }
-      else if (!document.hidden && !raf) { t0 = performance.now(); raf = requestAnimationFrame(frame); }
-    });
-  }
+  var nav = document.getElementById('nav');
+  function on() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', on, { passive: true }); on();
 })();
 
-/* reveal-on-scroll — opacity and transform only, and skipped entirely when the
-   visitor has asked for reduced motion */
+/* Scenes play only while on screen and while the tab is visible. Without
+   this script, or with reduced motion, every scene simply shows its finished
+   frame — which is how each one is drawn. */
+(function () {
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var visible = new Set();
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { visible.add(en.target); if (!document.hidden) en.target.classList.add('play'); }
+      else { visible.delete(en.target); en.target.classList.remove('play'); }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('[data-scene]').forEach(function (el) { io.observe(el); });
+  document.addEventListener('visibilitychange', function () {
+    visible.forEach(function (el) { el.classList.toggle('play', !document.hidden); });
+  });
+})();
+
+/* Reveal on scroll. */
 (function () {
   var els = document.querySelectorAll('.rise');
   if (!('IntersectionObserver' in window) ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    Array.prototype.forEach.call(els, function (el) { el.classList.add('in'); });
+    els.forEach(function (el) { el.classList.add('in'); });
     return;
   }
   var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en, i) {
+    entries.forEach(function (en) {
       if (!en.isIntersecting) return;
-      var el = en.target;
-      setTimeout(function () { el.classList.add('in'); }, (i % 3) * 70);
-      io.unobserve(el);
+      en.target.classList.add('in');
+      io.unobserve(en.target);
     });
   }, { rootMargin: '0px 0px -8% 0px' });
-  Array.prototype.forEach.call(els, function (el) { io.observe(el); });
+  els.forEach(function (el) { io.observe(el); });
 })();
 
 /* ============================================================================
-   Download cards follow the release.
-   The page is ALREADY CORRECT before this runs: every card links to
-   /releases/latest, which is right today and right after every future tag. So
-   everything here only makes a working link more specific, and any failure —
-   offline, blocked, rate-limited — leaves the served page standing. There is
-   deliberately no spinner and no error state.
-   api.github.com allows any origin but budgets 60 requests/hour per IP for
-   anonymous callers, so failing is routine rather than exceptional.
+   Downloads follow the release.
+   The page is already correct before this runs: every link points at a
+   stable name under /releases/latest/download/, which is right today and
+   after every future tag. This only adds the version and file sizes, and
+   points the hero button at the visitor's own platform. Any failure leaves
+   the served page standing; there is deliberately no error state.
    ========================================================================= */
 (function () {
-  var API = 'https://api.github.com/repos/anivarhq/anivar/releases/latest';
-  /* Asset names carry the version (Anivar_0.1.1_x64-setup.exe), so match on the
-     stable suffix rather than rebuilding a filename from a version string. The
-     rpm uses dots and a -1 release suffix, not the _x.y.z_ pattern. */
-  var MATCH = {
-    win:   /_x64-setup\.exe$/,
-    mac:   /_aarch64\.dmg$/,
-    linux: /_amd64\.AppImage$/,
-    deb:   /_amd64\.deb$/,
-    rpm:   /\.x86_64\.rpm$/
+  var BASE = 'https://github.com/anivarhq/anivar/releases/latest/download/';
+  var FILE = {
+    win:   'Anivar-windows-x64-setup.exe',
+    mac:   'Anivar-macos-arm64.dmg',
+    linux: 'Anivar-linux-x86_64.AppImage',
+    deb:   'Anivar-linux-amd64.deb',
+    rpm:   'Anivar-linux-x86_64.rpm'
+  };
+  var CTA = {
+    win:   ['Download for Windows', 'Windows 10 or 11 · 64-bit'],
+    mac:   ['Download for Mac', 'macOS 11 or later · Apple Silicon only'],
+    linux: ['Download for Linux', 'AppImage · Ubuntu 22.04 / Debian 12 or newer · .deb and .rpm below']
   };
 
   function currentOS() {
     var ua = navigator.userAgent || '';
     /* There is no mobile build. Without this an iPad reports macOS and an
-       Android phone reports Linux, so the page would mark a desktop installer
-       as that visitor's system and offer them a .dmg or an AppImage. */
+       Android phone reports Linux, and the page would hand a phone a desktop
+       installer and call it their system. */
     if ((navigator.userAgentData && navigator.userAgentData.mobile) ||
         /android|iphone|ipad|ipod/i.test(ua)) return null;
     var p = (navigator.userAgentData && navigator.userAgentData.platform) ||
@@ -453,56 +619,41 @@
     if (/win/i.test(p))            return 'win';
     if (/mac/i.test(p))            return 'mac';
     if (/linux|x11|cros/i.test(p)) return 'linux';
-    return null;                   /* unknown: no card is singled out */
+    return null;
   }
   function mb(b) { return Math.round(b / 1048576) + ' MB'; }
-  function set(sel, fn) {
-    Array.prototype.forEach.call(document.querySelectorAll(sel), fn);
+  function each(sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
+
+  var os = currentOS();
+  var req = document.getElementById('cta-req');
+  if (os) {
+    document.getElementById('cta-get').href = BASE + FILE[os];
+    document.getElementById('cta-label').textContent = CTA[os][0];
+    req.textContent = CTA[os][1];
+    var card = document.querySelector('[data-card="' + os + '"]');
+    var badge = document.querySelector('[data-badge="' + os + '"]');
+    if (card) card.setAttribute('data-you', '1');
+    if (badge) badge.textContent = 'Your system';
   }
 
-  fetch(API, { headers: { Accept: 'application/vnd.github+json' } })
+  fetch('https://api.github.com/repos/anivarhq/anivar/releases/latest',
+        { headers: { Accept: 'application/vnd.github+json' } })
     .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
     .then(function (rel) {
       var by = {};
-      (rel.assets || []).forEach(function (a) {
-        Object.keys(MATCH).forEach(function (k) { if (MATCH[k].test(a.name)) by[k] = a; });
+      (rel.assets || []).forEach(function (a) { by[a.name] = a; });
+      each('[data-file]', function (el) {
+        var a = by[FILE[el.getAttribute('data-file')]];
+        if (!a) return;
+        /* the narrow .deb/.rpm rows take the size alone */
+        el.textContent = el.closest('.dl-alt') ? mb(a.size) : a.name + ' · ' + mb(a.size);
       });
-
-      /* Point every link at its actual file. */
-      set('[data-os]', function (a) {
-        var asset = by[a.getAttribute('data-os')];
-        if (asset) a.href = asset.browser_download_url;
-      });
-
-      /* Name the file and its size under each button, so nobody has to guess
-         what they are about to download. */
-      set('[data-file]', function (el) {
-        var asset = by[el.getAttribute('data-file')];
-        if (!asset) return;
-        /* The alternate-format rows are narrow and already labelled .deb/.rpm,
-           so they take the size alone; the main slots name the whole file. */
-        el.textContent = el.closest('.dl-alt')
-          ? mb(asset.size)
-          : asset.name + ' · ' + mb(asset.size);
-      });
-
+      if (os && by[FILE[os]]) req.textContent = CTA[os][1] + ' · ' + mb(by[FILE[os]].size);
       var ver = (rel.tag_name || '').replace(/^v/, '');
-      var meta = document.getElementById('hero-meta');
-      if (meta && ver) {
-        meta.textContent = 'Free and open source · v' + ver + ' · Windows, macOS and Linux';
-      }
-
-      /* Mark the visitor's own platform. macOS is Apple Silicon only and a
-         browser cannot tell you which Mac it is on, so the card says so in its
-         requirements rather than the badge promising something. */
-      var os = currentOS();
-      if (!os) return;
-      var card = document.querySelector('[data-card="' + os + '"]');
-      var badge = document.querySelector('[data-badge="' + os + '"]');
-      if (card)  card.setAttribute('data-you', '1');
-      if (badge) badge.textContent = 'Your system';
+      if (ver) document.getElementById('hero-meta').textContent =
+        'Free and open source · Apache-2.0 · v' + ver;
     })
-    .catch(function () { /* leave the served markup exactly as it is */ });
+    .catch(function () { /* the served page is already correct */ });
 })();
 </script>
 </body>

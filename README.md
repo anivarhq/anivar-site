@@ -16,18 +16,32 @@ Then open <http://localhost:8000>.
 
 ## Layout
 
-    index.html          the page; the hero's WebGL background is inline
+    index.html          the page — every illustration is an inline SVG scene
     404.html            reuses the same stylesheet
-    assets/styles.css   design tokens shared with the app
-    assets/logo.png     the app mark, generated from the app repo's master
+    assets/styles.css   tokens (paper, ink, the app's one red) and the scene animations
+    assets/fonts/       Instrument Serif, self-hosted (OFL-1.1, see OFL.txt)
+    assets/logo.png     the app mark
     assets/og.png       social card, 1200x630
-    shots/              product screenshots
+
+The only request the page makes to anyone else is to the GitHub releases API.
+Fonts are self-hosted so a visitor's browser never calls a font CDN.
+
+## Illustrations, not screenshots
+
+The scenes are drawn, and the page says so. Each one is authored in its
+finished state; the animation only runs while the scene is on screen (a
+`.play` class added by an IntersectionObserver), and never with
+`prefers-reduced-motion`. A still frame, a no-JS visitor and a crawler all
+see the complete picture. Every claim a scene makes is something the app
+does — check the app before drawing a new one.
 
 ## Download links
 
-The download cards link to `releases/latest`, which is correct for every
-release without editing. On load the page reads the GitHub releases API and
-fills in the current version, each platform's filename and its size. If that
+Every download link points at a stable file name under
+`releases/latest/download/` (`Anivar-windows-x64-setup.exe` and so on), which
+is correct for every release without editing. On load the page reads the
+GitHub releases API and fills in the current version and each file's size,
+and points the hero button at the visitor's own platform. If that
 request fails — offline, or past the API's anonymous rate limit — the links
 that shipped in the HTML are still correct, so there is no error state.
 
