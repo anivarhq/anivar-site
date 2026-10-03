@@ -3,15 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Anivar — AI security cameras on your own computer</title>
-<meta name="description" content="Anivar records your security cameras around the clock and understands what they see and hear — faces you teach it, number plates, breaking glass — then answers your questions. Free, open source, and it all runs on your own computer.">
+<title>Anivar NVR — a free, open-source Blue Iris alternative with on-device AI</title>
+<meta name="description" content="Anivar NVR is a free, open-source Blue Iris alternative for Windows, macOS and Linux: 24/7 recording with on-device AI — faces, number plates, sounds and plain-language search. A normal installer, no Docker, no subscription.">
+<link rel="canonical" href="https://anivarhq.github.io/anivar-site/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Anivar NVR",
+ "alternateName":"Anivar","applicationCategory":"SecurityApplication",
+ "operatingSystem":"Windows 10, Windows 11, macOS 11+ (Apple Silicon), Linux",
+ "description":"Free, open-source network video recorder for your own computer, with on-device AI: object detection, face recognition, licence plates, sound classification and plain-language search.",
+ "url":"https://anivarhq.github.io/anivar-site/","downloadUrl":"https://github.com/anivarhq/anivar/releases/latest",
+ "license":"https://www.apache.org/licenses/LICENSE-2.0","isAccessibleForFree":true,
+ "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+ "codeRepository":"https://github.com/anivarhq/anivar"}
+</script>
 <meta name="theme-color" content="#FBFAF8">
 <link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/logo.png">
 <link rel="preload" href="assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Anivar — it watches, it listens, it remembers">
+<meta property="og:title" content="Anivar NVR — it watches, it listens, it remembers">
 <meta property="og:description" content="AI security cameras on your own computer. Faces, plates, sounds and search — free, open source, no cloud.">
 <meta property="og:image" content="https://anivarhq.github.io/anivar-site/assets/og.png">
 <meta property="og:url" content="https://anivarhq.github.io/anivar-site/">
@@ -39,9 +50,9 @@
 <!-- ═════════════════════════════ HERO ═════════════════════════════ -->
 <div class="hero">
   <div class="wrap">
-    <p class="eyebrow"><span class="pill">Alpha</span><span id="hero-meta">Free and open source · Apache-2.0</span></p>
+    <p class="eyebrow"><span class="pill">Alpha</span><span id="hero-meta">Anivar NVR · free and open source · Apache-2.0</span></p>
     <h1>It watches. It listens.<br>It <em>remembers</em>.</h1>
-    <p class="lede">Anivar records your security cameras around the clock and understands what they
+    <p class="lede">A free, open-source alternative to Blue Iris. Anivar records your security cameras around the clock and understands what they
       see and hear — the faces you teach it, number plates, breaking glass — then answers your
       questions about it. It's an ordinary app for your computer, and all of it runs there.</p>
     <div class="cta">
@@ -416,19 +427,19 @@
          Re-check before editing a cell. -->
     <div class="cmp-scroll rise">
       <table class="cmp">
-        <thead><tr><th scope="col"><span class="sr-only">Feature</span></th><th scope="col" class="us">Anivar</th><th scope="col">Frigate</th><th scope="col">Agent DVR</th><th scope="col">Blue Iris</th></tr></thead>
+        <thead><tr><th scope="col"><span class="sr-only">Feature</span></th><th scope="col" class="us">Anivar</th><th scope="col">Blue Iris</th><th scope="col">Agent DVR</th><th scope="col">Frigate</th></tr></thead>
         <tbody>
-          <tr><th scope="row">How you install it</th><td class="us"><span class="y" aria-hidden="true">✓</span>A desktop installer</td><td>Docker (recommended)</td><td>Installer, script or Docker</td><td>Windows installer</td></tr>
-          <tr><th scope="row">Runs on</th><td class="us">Windows, macOS (Apple Silicon), Linux</td><td>Linux; macOS through Docker; Windows not officially supported</td><td>Windows, macOS, Linux, Raspberry Pi</td><td>Windows</td></tr>
-          <tr><th scope="row">Source code</th><td class="us"><span class="y" aria-hidden="true">✓</span>Open · Apache-2.0</td><td><span class="y" aria-hidden="true">✓</span>Open · MIT</td><td><span class="n" aria-hidden="true">—</span>Core not published</td><td><span class="n" aria-hidden="true">—</span>Closed</td></tr>
-          <tr><th scope="row">Price</th><td class="us">Free</td><td>Free; optional Frigate+ models $50/yr</td><td>Free locally; remote access and apps from $7.95/mo</td><td>$39.95–$99.95</td></tr>
+          <tr><th scope="row">How you install it</th><td class="us"><span class="y" aria-hidden="true">✓</span>A desktop installer</td><td>Windows installer</td><td>Installer, script or Docker</td><td>Docker (recommended)</td></tr>
+          <tr><th scope="row">Runs on</th><td class="us">Windows, macOS (Apple Silicon), Linux</td><td>Windows</td><td>Windows, macOS, Linux, Raspberry Pi</td><td>Linux; macOS through Docker; Windows not officially supported</td></tr>
+          <tr><th scope="row">Source code</th><td class="us"><span class="y" aria-hidden="true">✓</span>Open · Apache-2.0</td><td><span class="n" aria-hidden="true">—</span>Closed</td><td><span class="n" aria-hidden="true">—</span>Core not published</td><td><span class="y" aria-hidden="true">✓</span>Open · MIT</td></tr>
+          <tr><th scope="row">Price</th><td class="us">Free</td><td>$39.95–$99.95</td><td>Free locally; remote access and apps from $7.95/mo</td><td>Free; optional Frigate+ models $50/yr</td></tr>
           <tr><th scope="row">Faces and plates</th><td class="us"><span class="y" aria-hidden="true">✓</span>Built in</td><td><span class="y" aria-hidden="true">✓</span>Built in</td><td><span class="y" aria-hidden="true">✓</span>With a paid plan</td><td><span class="y" aria-hidden="true">✓</span>Built in</td></tr>
-          <tr><th scope="row">Recognises sounds</th><td class="us"><span class="y" aria-hidden="true">✓</span>521 classes</td><td><span class="y" aria-hidden="true">✓</span>500+ classes</td><td><span class="y" aria-hidden="true">✓</span>With a paid plan</td><td><span class="n" aria-hidden="true">—</span>Not listed</td></tr>
-          <tr><th scope="row">Search footage by description</th><td class="us"><span class="y" aria-hidden="true">✓</span>Built in</td><td><span class="y" aria-hidden="true">✓</span>Built in</td><td><span class="n" aria-hidden="true">—</span>Through outside assistants</td><td><span class="n" aria-hidden="true">—</span>Not listed</td></tr>
-          <tr><th scope="row">Language model</th><td class="us"><span class="y" aria-hidden="true">✓</span>Included, runs on your computer — or bring your own key</td><td>Bring your own (Ollama, llama.cpp or a cloud API)</td><td>Outside assistants and vision models you connect</td><td><span class="n" aria-hidden="true">—</span>Not listed</td></tr>
-          <tr><th scope="row">Home Assistant / MQTT</th><td class="us"><span class="n" aria-hidden="true">—</span>No — alerts go to Telegram</td><td><span class="y" aria-hidden="true">✓</span>Both</td><td><span class="y" aria-hidden="true">✓</span>Both</td><td><span class="y" aria-hidden="true">✓</span>MQTT</td></tr>
-          <tr><th scope="row">Phone app</th><td class="us"><span class="n" aria-hidden="true">—</span>Telegram bot and share links</td><td>Installable web app</td><td><span class="y" aria-hidden="true">✓</span>iOS and Android, with a subscription</td><td><span class="y" aria-hidden="true">✓</span>iOS ($9.99) and Android</td></tr>
-          <tr><th scope="row">Maturity</th><td class="us">Alpha</td><td><span class="y" aria-hidden="true">✓</span>Established, large community</td><td><span class="y" aria-hidden="true">✓</span>Established</td><td><span class="y" aria-hidden="true">✓</span>Established</td></tr>
+          <tr><th scope="row">Recognises sounds</th><td class="us"><span class="y" aria-hidden="true">✓</span>521 classes</td><td><span class="n" aria-hidden="true">—</span>Not listed</td><td><span class="y" aria-hidden="true">✓</span>With a paid plan</td><td><span class="y" aria-hidden="true">✓</span>500+ classes</td></tr>
+          <tr><th scope="row">Search footage by description</th><td class="us"><span class="y" aria-hidden="true">✓</span>Built in</td><td><span class="n" aria-hidden="true">—</span>Not listed</td><td><span class="n" aria-hidden="true">—</span>Through outside assistants</td><td><span class="y" aria-hidden="true">✓</span>Built in</td></tr>
+          <tr><th scope="row">Language model</th><td class="us"><span class="y" aria-hidden="true">✓</span>Included, runs on your computer — or bring your own key</td><td><span class="n" aria-hidden="true">—</span>Not listed</td><td>Outside assistants and vision models you connect</td><td>Bring your own (Ollama, llama.cpp or a cloud API)</td></tr>
+          <tr><th scope="row">Home Assistant / MQTT</th><td class="us"><span class="n" aria-hidden="true">—</span>No — alerts go to Telegram</td><td><span class="y" aria-hidden="true">✓</span>MQTT</td><td><span class="y" aria-hidden="true">✓</span>Both</td><td><span class="y" aria-hidden="true">✓</span>Both</td></tr>
+          <tr><th scope="row">Phone app</th><td class="us"><span class="n" aria-hidden="true">—</span>Telegram bot and share links</td><td><span class="y" aria-hidden="true">✓</span>iOS ($9.99) and Android</td><td><span class="y" aria-hidden="true">✓</span>iOS and Android, with a subscription</td><td>Installable web app</td></tr>
+          <tr><th scope="row">Maturity</th><td class="us">Alpha</td><td><span class="y" aria-hidden="true">✓</span>Established</td><td><span class="y" aria-hidden="true">✓</span>Established</td><td><span class="y" aria-hidden="true">✓</span>Established, large community</td></tr>
         </tbody>
       </table>
     </div>
@@ -651,7 +662,7 @@
       if (os && by[FILE[os]]) req.textContent = CTA[os][1] + ' · ' + mb(by[FILE[os]].size);
       var ver = (rel.tag_name || '').replace(/^v/, '');
       if (ver) document.getElementById('hero-meta').textContent =
-        'Free and open source · Apache-2.0 · v' + ver;
+        'Anivar NVR · free and open source · Apache-2.0 · v' + ver;
     })
     .catch(function () { /* the served page is already correct */ });
 })();
